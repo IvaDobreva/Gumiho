@@ -1,0 +1,35 @@
+# http | list
+generate_strategy: 'http'
+
+methods: [ 'GET', 'POST', 'DELETE', 'PUT' ]
+
+#list:
+# url_list: '/home/.../database_routes_bla_bla.yml'
+
+http:
+  hostname: '0.0.0.0'
+  port: '4000'
+  path: 'v1/routes'
+# if http_ssl == true
+#   then use 'https://'
+# else 
+#   use 'http://'
+#
+#
+  ssl: false
+
+#
+# http://0.0.0.0:3000/v1
+
+report:
+  document_headers: false
+  document_status: true
+
+template:
+  './generate_doc/template.html.erb'
+#
+# yml[:report][:document_headers]
+# => false
+#
+
+

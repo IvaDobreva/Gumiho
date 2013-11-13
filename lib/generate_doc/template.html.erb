@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      li.box {
+              display: inline-block;
+              padding: 10px 10px;
+              font-size: 14px;
+              color: #ffff;
+              margin: 0;
+              background-color:#cee0f2;
+              border-color: black;
+              border-radius: 5px;
+              font-weight:bold;}
+      span.method {background-color:#0061ac;
+                  padding: 10px 10px;
+                  border-radius: 5px;
+                  padding: 10px 10px;
+                  color: #fff;}
+      textarea.textbox {resize: none;
+                        width: 800px;
+                        height: 250px;
+                        border-radius: 5px;}
+      
+    </style>
+  </head>
+  
+  <body>
+    </br>
+<!--
+    <ul id='list response'>
+      <%response.each do |res|%>
+        <li class='box'>
+          <span class='method'><%=res[:method]%></span> 
+          <%=res[:url]%>
+        </li>
+        </br> </br>
+      <%end%>
+    </ul>
+-->   
+      <ul id='list response'>
+        <%response.each do |res|%>
+            <%if res[:response]%>
+                <li class='box'>
+                  <span class='method'><%=res[:method]%></span> 
+                  <%=res[:url]%>
+                  </br> </br>
+                  <textarea readonly class='textbox'>
+                    <%=require'json'; JSON.pretty_generate res[:response]%>
+                  </textarea>
+                </li> 
+                </br></br>
+            <%end%>
+        <%end%>
+        
+    </ul>
+ 
+  </body>
+</html>
