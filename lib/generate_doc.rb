@@ -45,7 +45,7 @@ module GenerateDoc
     template_file = params[:template]
   end
   
-  routes_hash = get_routes(path_conf.build_path, path_conf.ssl)
+  routes_hash = get_method(path_conf.build_path, path_conf.ssl)
 
   response = []
   
@@ -68,10 +68,6 @@ module GenerateDoc
     end
 
   end
-  
-  #response.each do |res|
-  #  p res[:method]
-  #end
   
   generate_response(response, template_file)
   

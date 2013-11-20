@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = GenerateDoc::VERSION
   spec.authors       = ["IvaDobreva"]
   spec.email         = ["iva95dobreva@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Slon}
+  spec.summary       = %q{Mlon}
   spec.homepage      = ""
   spec.license       = ""
 
-  spec.files         = ["lib/generate_doc.rb", "lib/generate_doc/command_line_params.rb", "lib/generate_doc/http_provider.rb"]
+  spec.files         = ["lib/generate_doc.rb", "lib/generate_doc/command_line_params.rb"]
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]

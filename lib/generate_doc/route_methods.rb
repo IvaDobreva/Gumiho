@@ -1,7 +1,7 @@
 require 'net/http'
 require 'openssl'
 require 'json'
-
+require 'awesome_print'
 module JSON
   def self.is_json?(foo)
     begin
@@ -14,22 +14,7 @@ module JSON
 end
 
 
-module GenerateDoc
-
-  #Returns hash with routes
-  def get_routes(path, ssl)
-    uri = URI(path)
-    uri.query = URI.encode_www_form({ :doc => true })
-  
-    http = Net::HTTP.new(uri.host, uri.port)
-    
-    p 'Cannot handle SSL' if ssl==true
-
-    response = http.get(uri)
-   
-    json_data = JSON.parse(response.body)
-    return json_data
-  end   
+module GenerateDoc 
   
   # GET request
   def get_method(path, ssl)
@@ -41,7 +26,8 @@ module GenerateDoc
     p 'Cannot handle SSL' if ssl==true
    
     response = http.get(uri)
-   
+    #ap uri
+    #ap response.body
     #Checks if JSON response is right
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var button = document.getElementById('toggle'),
+      text = document.getElementById('text');
+
+      button.onclick = function() {   
+      var isHidden = text.style.display == 'none';
+      text.style.display = isHidden ? 'block' : 'none';
+      };
+    </script>
+  
+    <style>
+      ul.main {
+      width: 1000px;}
+
+      li.box {
+      display: inherit;
+      padding: 10px 10px;
+      font-size: 14px;
+      color: #ffff;
+      margin: 0;
+      background-color:#cee0f2;
+      border-radius: 5px;
+      font-weight:bold;}
+
+      span.method {background-color:#0061ac;
+      padding: 10px 10px;
+      border-radius: 5px;
+      padding: 10px 10px;
+      color: #fff;}
+
+      #text {resize: none;
+      height: 250px;
+      overflow: auto;
+      background-color: white;
+      border-radius: 5px;
+      }
+    </style>
+    <script type="text/javascript">
+          function showDiv(toggle){
+          document.getElementById(toggle).style.display = 'block';
+          }
+        </script>
+
+  </head>
+  <body>
+  <div class = ''
+    <ul class = 'main'>
+      <li class='box'>
+        <span class='method'>GET</span> 
+        http://0.0.0.0:4000/v1 </br></br>
+       <!-- <pre id='text'> </pre>-->
+        
+        <button>Something</button>
+        
+
+        <input type="button" name="answer" onclick="showDiv('toggle')">Show</input>
+
+        <div id="toggle" style="display:none"><pre id='text'> win</pre></div>
+      </li>
+    </ul>
+  </body>
+</html>

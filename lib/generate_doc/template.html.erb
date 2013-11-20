@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
+  
     <style>
-      li.box {
-              display: inline-block;
+       div.main {
+                width: 1000px;
+               
+                margin: auto;}
+    
+      li.box {display: inherit;
               padding: 10px 10px;
               font-size: 14px;
               color: #ffff;
               margin: 0;
               background-color:#cee0f2;
               border-color: black;
-              border-radius: 5px;
-              font-weight:bold;}
+              border-radius: 5px;}
+              
       span.method {background-color:#0061ac;
                   padding: 10px 10px;
                   border-radius: 5px;
                   padding: 10px 10px;
-                  color: #fff;}
-      textarea.textbox {resize: none;
-                        width: 800px;
-                        height: 250px;
-                        border-radius: 5px;}
+                  color: #fff;
+                  font-weight:bold;}
+                  
+      #textbox {resize: none;
+                  background-color: white;
+                  height: 250px;
+                  overflow: auto;
+                  border-radius: 5px;}
       
     </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+      function showDiv(button){
+        $(button).next().toggle();
+      }
+    </script>
   </head>
   
   <body>
     </br>
-<!--
-    <ul id='list response'>
-      <%response.each do |res|%>
-        <li class='box'>
-          <span class='method'><%=res[:method]%></span> 
-          <%=res[:url]%>
-        </li>
-        </br> </br>
-      <%end%>
-    </ul>
--->   
-      <ul id='list response'>
+ 
+      <div class='main'>
+      <ul>
         <%response.each do |res|%>
             <%if res[:response]%>
                 <li class='box'>
                   <span class='method'><%=res[:method]%></span> 
-                  <%=res[:url]%>
+                  <b> <%=res[:url]%> </b>
                   </br> </br>
-                  <textarea readonly class='textbox'>
-                    <%=require'json'; JSON.pretty_generate res[:response]%>
-                  </textarea>
+                  
+                  <button onclick="showDiv(this)">Try it out</button>
+                  
+                  <div id="toggle" style="display:none">
+                    <pre id='textbox'>
+                      <%=JSON.pretty_generate res[:response]%>
+                    </pre>
+                  </div>
+                  
                 </li> 
                 </br></br>
             <%end%>
         <%end%>
         
     </ul>
- 
+    </div>
   </body>
 </html>

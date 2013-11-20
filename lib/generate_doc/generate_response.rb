@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'erb'
+require 'json'
 
 module GenerateDoc
 
