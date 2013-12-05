@@ -19,7 +19,7 @@ module GenerateDoc
         short '-m'
         long '--method'
         desc 'Add GET, POST, PUT, DELETE methods'
-        default ['GET', 'POST', 'PUT', 'DELETE']
+        default ['GET']
       end
 
       option :protocol do
@@ -47,7 +47,7 @@ module GenerateDoc
         short '-r'
         long '--route'
         desc 'Change current route'
-        default 'v1/routes'
+        default '/v1/routes'
       end  
 
       option :ssl do

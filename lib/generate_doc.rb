@@ -46,25 +46,27 @@ module GenerateDoc
   end
   
   routes_hash = get_method(path_conf.build_path, path_conf.ssl)
-
+  
   response = []
   
   routes_hash.each do |route|
-
-    path = path_conf.get_method_route(route['path'])
     
-    params[:methods].each do |method|
-      case method
-      when 'GET'
-        response << { :method => 'GET', :url => path, :response => get_method(path, path_conf.ssl) }
-      when 'POST'
-        response << { :method => 'POST', :url => path, :response => post_method(path, path_conf.ssl) }     
-      when 'PUT'
-        response << { :method => 'PUT', :url => path, :response => put_method(path, path_conf.ssl) }
-      when 'DELETE'
-        response << { :method => 'DELETE', :url => path, :response => get_method(path, path_conf.ssl) }
-      end
+    if route_filter(route['path'])==true
+      path = path_conf.get_method_route(route['path']) 
+     
+      params[:methods].each do |method|
+        case method
+        when 'GET'
+          response << { :method => 'GET', :url => path, :response => get_method(path, path_conf.ssl) }
+        when 'POST'
+          response << { :method => 'POST', :url => path, :response => post_method(path, path_conf.ssl) }     
+        when 'PUT'
+          response << { :method => 'PUT', :url => path, :response => put_method(path, path_conf.ssl) }
+        when 'DELETE'
+          response << { :method => 'DELETE', :url => path, :response => delete_method(path, path_conf.ssl) }
+        end
 
+      end
     end
 
   end

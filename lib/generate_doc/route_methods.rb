@@ -26,13 +26,14 @@ module GenerateDoc
     p 'Cannot handle SSL' if ssl==true
    
     response = http.get(uri)
+  
     #ap uri
     #ap response.body
     #Checks if JSON response is right
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)
     end
-
+   
   end
 
   #POST request
@@ -49,7 +50,7 @@ module GenerateDoc
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(request)
     end
-    
+   
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)
     end
@@ -66,7 +67,7 @@ module GenerateDoc
     request = Net::HTTP::Put.new(path)
     request.set_form_data({:doc=>true })
     response = http.request(request)
-
+    
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)
     end
@@ -82,11 +83,16 @@ module GenerateDoc
     p 'Cannot handle SSL' if ssl==true
 
     response = http.delete(path)
-  
+    
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)
     end
     
+  end
+
+  #Example filter for routes containing 'school' string
+  def route_filter(path)
+    path.include? 'v1/schools'
   end
 
 end

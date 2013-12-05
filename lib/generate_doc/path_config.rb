@@ -15,7 +15,7 @@ module GenerateDoc
 
     #Builds path from given params
     def build_path
-      @link = "#{@protocol}://#{@hostname}:#{@port}/#{@path}"  
+      @link = "#{@protocol}://#{@hostname}:#{@port}#{@path}"
     end       
 
     def get_method_route(path)
