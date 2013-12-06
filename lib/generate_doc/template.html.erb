@@ -31,7 +31,10 @@
                   overflow: auto;
                   border-radius: 5px;}
     
-    td { border: 1px collapse;}
+    table.params {border-collapse: collapse; 
+                  width: 100%;
+                  border-bottom: 1px solid #71a4d8;}
+    table.params td, th {border-top: 1px solid #71a4d8;}
       
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -55,32 +58,26 @@
                   <span class='method'><%=res[:method]%></span> 
                   <b> <%=res[:url]%> </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         <%map_array('data.params', res[:response]) do |param|%>
-                          
                           <tr>
                           <td><%=name = map_string(param,'name')%></td>
                           <td><input type="text" name=<%=name%>>  </td>
                           <td><%=map_string(param,'type')%></td>
-                          <td><%=map_string(param,'description')%></td>
-                         
-                        <%end%>
-                         <button onclick="showDiv(this)">Try it out</button>
+                          <td class='paramDescr'><%=map_string(param,'description')%></td>
                           </tr>
-                      </form>
+                        <%end%>
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   

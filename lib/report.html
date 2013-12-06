@@ -31,7 +31,10 @@
                   overflow: auto;
                   border-radius: 5px;}
     
-    td { border: 1px collapse;}
+    table.params {border-collapse: collapse; 
+                  width: 100%;
+                  border-bottom: 1px solid #71a4d8;}
+    table.params td, th {border-top: 1px solid #71a4d8;}
       
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -55,24 +58,19 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> Get list all schools
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> Get list all schools
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                         <button onclick="showDiv(this)">Try it out</button>
-                          </tr>
-                      </form>
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -83,7 +81,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools?doc=true",
     "status": "ok",
-    "response_time": "0.004472845 seconds",
+    "response_time": "0.004323356 seconds",
     "params": {
       "doc": "true",
       "access_token": null
@@ -111,48 +109,40 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools/:id </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> Single School
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> Single School
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                          
                           <tr>
                           <td>access_token</td>
                           <td><input type="text" name=access_token>  </td>
                           <td>access_token</td>
-                          <td>Access Token</td>
-                         
+                          <td class='paramDescr'>Access Token</td>
+                          </tr>
                         
-                          
                           <tr>
                           <td>fields</td>
                           <td><input type="text" name=fields>  </td>
                           <td>fields</td>
-                          <td>Selectable fields for the response</td>
-                         
+                          <td class='paramDescr'>Selectable fields for the response</td>
+                          </tr>
                         
-                          
                           <tr>
                           <td>id</td>
                           <td><input type="text" name=id>  </td>
                           <td>string</td>
-                          <td>ID of the school</td>
-                         
-                        
-                         <button onclick="showDiv(this)">Try it out</button>
+                          <td class='paramDescr'>ID of the school</td>
                           </tr>
-                      </form>
+                        
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -163,7 +153,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools/:id?doc=true",
     "status": "ok",
-    "response_time": "0.004452248 seconds",
+    "response_time": "0.00429833 seconds",
     "params": {
       "doc": "true",
       "id": ":id",
@@ -218,24 +208,19 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools/new </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> 
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                         <button onclick="showDiv(this)">Try it out</button>
-                          </tr>
-                      </form>
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -246,7 +231,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools/new?doc=true",
     "status": "ok",
-    "response_time": "0.006433409 seconds",
+    "response_time": "0.005853057 seconds",
     "params": {
       "doc": "true",
       "access_token": null
@@ -274,7 +259,7 @@
         "country_code": "",
         "phone_number": ""
       },
-      "id": "52a080c4e028278c94000085"
+      "id": "52a1b91be028275d5900000e"
     }
   },
   "errors": [
@@ -293,48 +278,40 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools/:id/accounts </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> Single School
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> Single School
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                          
                           <tr>
                           <td>access_token</td>
                           <td><input type="text" name=access_token>  </td>
                           <td>access_token</td>
-                          <td>Access Token</td>
-                         
+                          <td class='paramDescr'>Access Token</td>
+                          </tr>
                         
-                          
                           <tr>
                           <td>fields</td>
                           <td><input type="text" name=fields>  </td>
                           <td>fields</td>
-                          <td>Selectable fields for the response</td>
-                         
+                          <td class='paramDescr'>Selectable fields for the response</td>
+                          </tr>
                         
-                          
                           <tr>
                           <td>id</td>
                           <td><input type="text" name=id>  </td>
                           <td>string</td>
-                          <td>ID of the school</td>
-                         
-                        
-                         <button onclick="showDiv(this)">Try it out</button>
+                          <td class='paramDescr'>ID of the school</td>
                           </tr>
-                      </form>
+                        
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -345,7 +322,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools/:id/accounts?doc=true",
     "status": "ok",
-    "response_time": "0.00440141 seconds",
+    "response_time": "0.004252209 seconds",
     "params": {
       "doc": "true",
       "id": ":id",
@@ -400,24 +377,19 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> Get list all schools
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> Get list all schools
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                         <button onclick="showDiv(this)">Try it out</button>
-                          </tr>
-                      </form>
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -428,7 +400,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools?doc=true",
     "status": "ok",
-    "response_time": "0.004233907 seconds",
+    "response_time": "0.004050505 seconds",
     "params": {
       "doc": "true",
       "access_token": null
@@ -456,24 +428,19 @@
                   <span class='method'>GET</span> 
                   <b> http://0.0.0.0:4000/v1/schools </b>
                   </br></br>
-                    <table>
+                  <b>Description:</b> Get list all schools
+                    <form>
+                    <table class = 'params'>
                       <tr>
-                        <td>
-                          <b>Description:</b> Get list all schools
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><b>Name</b></td>
-                        <td><b>Value</b></td>
-                        <td><b>Type</b></td>
-                        <td><b>Description</b></td>
-                      </tr> 
-                      <form>
+                        <th><b>Name</b></th>
+                        <th><b>Value</b></th>
+                        <th><b>Type</b></th>
+                        <th><b>Description</b></th>
+                       </tr> 
                         
-                         <button onclick="showDiv(this)">Try it out</button>
-                          </tr>
-                      </form>
                     </table>
+                    <button onclick="showDiv(this)">Try it out</button>
+                    </form>
                   <!--Generate response with params-->
                   
                   
@@ -484,7 +451,7 @@
     "method": "GET",
     "url": "http://0.0.0.0:4000/v1/schools?doc=true",
     "status": "ok",
-    "response_time": "0.004219648 seconds",
+    "response_time": "0.004043362 seconds",
     "params": {
       "doc": "true",
       "access_token": null
