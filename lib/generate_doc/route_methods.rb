@@ -90,9 +90,9 @@ module GenerateDoc
     
   end
 
-  #Example filter for routes containing 'school' string
+  #Example filter for routes containing 'route'
   def route_filter(path)
-    path.include? 'v1/schools'
+    path.include? 'routes'
   end
 
 end

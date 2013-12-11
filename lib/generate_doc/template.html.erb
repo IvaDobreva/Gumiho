@@ -4,15 +4,14 @@
     
   
     <style>
-       div.main {
-                width: 1000px;
-               
+	textarea.result_holder { display: none; }
+      div.main {width: 1000px;
                 margin: auto;}
     
       li.box {display: inherit;
               padding: 10px 10px;
               font-size: 14px;
-              color: #ffff;
+              color: #1a2f43;
               margin: 0;
               background-color:#cee0f2;
               border-color: black;
@@ -43,6 +42,26 @@
       function showDiv(button){
         $(button).next().toggle();
       }
+
+	tryMe = function(method, url, button){ 
+		form = $(button).parent()
+		inputs = form.select('input')
+		data = {}
+
+		$.each(inputs, function(index, value){
+			data[value.attr('name')] = value.attr('value')
+		})
+
+		$.ajax({ type: method,
+			url: url,
+			data: data 
+			success: function(data){
+				form.find('textarea').html(data).css('display', 'block')
+				form.append('<button onclick="hideResult()">Hide</button>
+			}
+		})
+
+	}
     </script>
     
   </head>
@@ -51,48 +70,44 @@
     </br>
  
       <div class='main'>
-      <ul>
-        <%response.each do |res|%>
-            <%if res[:response]%>
-                <li class='box'>
-                  <span class='method'><%=res[:method]%></span> 
-                  <b> <%=res[:url]%> </b>
+        <ul>
+          <%response.each do |res|%>
+              <%if res[:response]%>
+                  <li class='box'>
+                    <span class='method'><%=res[:method]%></span> 
+                    <span class='url'><b><%=res[:url]%> </b></span>
+                    </br></br>
+                    <% if check_status(res[:response])== 'ok'%>
+                      <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
+                        <form name='form_params'>
+                          <table class = 'params'>
+                            <tr>
+                              <th><b>Name</b></th>
+                              <th><b>Value</b></th>
+                              <th><b>Type</b></th>
+                              <th><b>Description</b></th>
+                             </tr> 
+                              <%map_array(res[:response], 'data.params') do |param_data|%>
+                                <tr>
+                                  <td><%=name = map_string(param_data,'name')%></td>
+                                  <td><input type="text" name=<%=name%>></td>
+                                  <td><%=map_string(param_data,'type')%></td>
+                                  <td class='paramDescr'><%=map_string(param_data,'description')%></td>
+                                </tr>
+                              <%end%>
+                          </table>
+                          <textarea class="result_holder" ></textarea>
+                          <button onclick="tryMe(this)">Try it out</button>
+                        </form>
+                      <%else%>
+                        Request FAILED.
+                    <%end%> 
+                  </li> 
                   </br></br>
-                  <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
-                    <form>
-                    <table class = 'params'>
-                      <tr>
-                        <th><b>Name</b></th>
-                        <th><b>Value</b></th>
-                        <th><b>Type</b></th>
-                        <th><b>Description</b></th>
-                       </tr> 
-                        <%map_array('data.params', res[:response]) do |param|%>
-                          <tr>
-                          <td><%=name = map_string(param,'name')%></td>
-                          <td><input type="text" name=<%=name%>>  </td>
-                          <td><%=map_string(param,'type')%></td>
-                          <td class='paramDescr'><%=map_string(param,'description')%></td>
-                          </tr>
-                        <%end%>
-                    </table>
-                    <button onclick="showDiv(this)">Try it out</button>
-                    </form>
-                  <!--Generate response with params-->
-                  
-                  
-                  <div id="toggle" style="display:none">
-                    <pre class='textbox'>
-                      <%=JSON.pretty_generate res[:response]%>
-                    </pre>
-                  </div>
-                  
-                </li> 
-                </br></br>
-            <%end%>
-        <%end%>
-        
-    </ul>
+              <%end%>
+          <%end%>
+          
+      </ul>
     </div>
   </body>
 </html>

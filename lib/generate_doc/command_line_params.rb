@@ -19,7 +19,7 @@ module GenerateDoc
         short '-m'
         long '--method'
         desc 'Add GET, POST, PUT, DELETE methods'
-        default ['GET']
+        default ['GET', 'POST', 'PUT', 'DELETE']
       end
 
       option :protocol do

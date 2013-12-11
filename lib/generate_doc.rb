@@ -51,7 +51,7 @@ module GenerateDoc
   
   routes_hash.each do |route|
     
-    if route_filter(route['path'])==true
+    if route_filter(route['path'])==false
       path = path_conf.get_method_route(route['path']) 
      
       params[:methods].each do |method|

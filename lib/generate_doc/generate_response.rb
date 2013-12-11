@@ -14,13 +14,30 @@ module GenerateDoc
 
   end
 
-  def map_array(template_param, response)
-    params = template_param.split('.')
-    data = response
-    result = Array.new
+  def parse_response(response, params)
+    result = response
     params.each do |param|
-      data = data[param]
+      result = result[param] if result.class == Hash
     end
+
+    return result
+  end
+
+######CHECK HTTTP REQUEST STATUS !!!!!
+  def check_status(response)
+    template_params = 'metadata.status'
+    params = template_params.split('.')
+    status = parse_response(response, params)
+    return status
+  end
+######
+
+  def map_array(response, template_param)
+    params = template_param.split('.')
+    
+    result = Array.new
+    data = parse_response(response, params)
+
     if data.class == Array and data.empty? == false
       result.push(data)
     end
@@ -30,16 +47,14 @@ module GenerateDoc
         yield one_param
       end
     end
+
   end
 
   def map_string(response, template_param)
     params = template_param.split('.')
-    
-    data = response
   
-    params.each do |param|
-      data = data[param]
-    end
+    data = parse_response(response, params)
+
     return data   
   end
 
