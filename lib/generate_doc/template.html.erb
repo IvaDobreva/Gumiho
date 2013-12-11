@@ -4,7 +4,11 @@
     
   
     <style>
-	textarea.result_holder { display: none; }
+      pre.result_holder { display: none; 
+                          resize: none;
+                          overflow: auto;
+                          border-radius: 5px;}
+      
       div.main {width: 1000px;
                 margin: auto;}
     
@@ -23,18 +27,36 @@
                   padding: 10px 10px;
                   color: #fff;
                   font-weight:bold;}
-                  
+                    
       pre.textbox {resize: none;
                   background-color: white;
                   height: 250px;
                   overflow: auto;
                   border-radius: 5px;}
-    
-    table.params {border-collapse: collapse; 
-                  width: 100%;
-                  border-bottom: 1px solid #71a4d8;}
-    table.params td, th {border-top: 1px solid #71a4d8;}
       
+      table.params {border-collapse: collapse; 
+                    width: 100%;
+                    border-bottom: 1px solid #71a4d8;}
+      table.params td, th {border-top: 1px solid #71a4d8;}
+        
+      p.failed {font-weight:bold;
+                color: #bb132a;
+                font-size: 16px;}
+      
+      span.method_failed {background-color:#bb132a;
+                  padding: 10px 10px;
+                  border-radius: 5px;
+                  padding: 10px 10px;
+                  color: #fff;
+                  font-weight:bold;}
+      li.box_failed {display: inherit;
+              padding: 10px 10px;
+              font-size: 14px;
+              color: #1a2f43;
+              margin: 0;
+              background-color:#dddddd;
+              border-color: black;
+              border-radius: 5px;}
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
@@ -43,25 +65,25 @@
         $(button).next().toggle();
       }
 
-	tryMe = function(method, url, button){ 
-		form = $(button).parent()
-		inputs = form.select('input')
-		data = {}
+      tryMe = function(method, url, button){ 
+        form = $(button).parent()
+        inputs = form.select('input')
+        data = {}
 
-		$.each(inputs, function(index, value){
-			data[value.attr('name')] = value.attr('value')
-		})
+        $.each(inputs, function(index, value){
+          data[value.attr('name')] = value.attr('value')
+        })
 
-		$.ajax({ type: method,
-			url: url,
-			data: data 
-			success: function(data){
-				form.find('textarea').html(data).css('display', 'block')
-				form.append('<button onclick="hideResult()">Hide</button>
-			}
-		})
+        $.ajax({ type: method,
+          url: url,
+          data: data 
+          success: function(data){
+            form.find('pre').html(data).css('display', 'block')
+            form.append('<button onclick="hideResult()">Hide</button>
+          }
+        })
 
-	}
+      }
     </script>
     
   </head>
@@ -72,41 +94,45 @@
       <div class='main'>
         <ul>
           <%response.each do |res|%>
-              <%if res[:response]%>
-                  <li class='box'>
-                    <span class='method'><%=res[:method]%></span> 
-                    <span class='url'><b><%=res[:url]%> </b></span>
-                    </br></br>
-                    <% if check_status(res[:response])== 'ok'%>
-                      <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
-                        <form name='form_params'>
-                          <table class = 'params'>
-                            <tr>
-                              <th><b>Name</b></th>
-                              <th><b>Value</b></th>
-                              <th><b>Type</b></th>
-                              <th><b>Description</b></th>
-                             </tr> 
-                              <%map_array(res[:response], 'data.params') do |param_data|%>
-                                <tr>
-                                  <td><%=name = map_string(param_data,'name')%></td>
-                                  <td><input type="text" name=<%=name%>></td>
-                                  <td><%=map_string(param_data,'type')%></td>
-                                  <td class='paramDescr'><%=map_string(param_data,'description')%></td>
-                                </tr>
-                              <%end%>
-                          </table>
-                          <textarea class="result_holder" ></textarea>
-                          <button onclick="tryMe(this)">Try it out</button>
-                        </form>
-                      <%else%>
-                        Request FAILED.
-                    <%end%> 
-                  </li> 
-                  </br></br>
-              <%end%>
-          <%end%>
-          
+              
+            <% if check_status(res[:response])== 'ok'%>
+              <li class='box'>
+                <span class='method'><%=res[:method]%></span> 
+                <span class='url'><b><%=res[:url]%> </b></span>
+                <br>
+                <br>
+                <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
+                <form name='form_params'>
+                  <table class = 'params'>
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    <%map_array(res[:response], 'data.params') do |param_data|%>
+                      <tr>
+                        <td><%=name = map_string(param_data,'name')%></td>
+                        <td><input type="text" name=<%=name%>></td>
+                        <td><%=map_string(param_data,'type')%></td>
+                        <td class='paramDescr'><%=map_string(param_data,'description')%></td>
+                      </tr>
+                    <%end%>
+                  </table>
+                  <pre class="result_holder" ></pre>
+                  <button onclick="tryMe(this)">Try it out</button>
+                </form>
+              </li>
+            <%else%>
+              <li class='box_failed'>
+                <span class='method_failed'><%=res[:method]%></span> 
+                <span class='url'><b><%=res[:url]%> </b></span>
+                <p class='failed'>Request FAILED.</p>
+              </li>
+            <%end%>
+            <br>
+            <br> 
+        <%end%>
       </ul>
     </div>
   </body>
