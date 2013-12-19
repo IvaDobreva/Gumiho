@@ -58,4 +58,8 @@ module GenerateDoc
     return data   
   end
 
+  def form_name
+    'formParams'
+  end
+
 end
