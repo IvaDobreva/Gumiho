@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
   
     <style>
       div.main {
@@ -62,25 +61,30 @@
       overflow: auto;
       display: none;}
     </style>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
-      replace_params = function() {}
+      function hideResult(button) {
+        $(button).hide()
+      }
     
       tryMe = function(method, url, button){
-        
         form = $(button).parent()
+        inputs = form.find('input')
         
-        inputs = form.select('input')
-  
         data = {}
-  
-        $.each(inputs, function(index, value){
-          value = $(value)
-          data[value.attr('name')] = data[value.attr('value')]
-          
+        
+        inputs.each(function(index) {
+          if(url.indexOf(':' + $(this).attr('name')) >= 0) {
+            url=url.replace(':' + $(this).attr('name'), $(this).val()) 
+          } else {
+            data[$(this).attr('name')] = $(this).val()
+          }
         })
-
+        
+        console.log(data)
+        
         $.ajax({ type: method,
           url: url,
           data: data,
@@ -89,10 +93,13 @@
             str = JSON.stringify(data, undefined, 4)
             form.find('.requested_url').html(url).css('display', 'block')
             form.find('.response_box').html(str).css('display', 'block')
-            form.append('<button onclick="hideResult()">Hide</button>')
+            //form.find('button[type='submit']').prop('disabled',true)
+            form.append('<button onclick="hideResult(this) type="button" ">Hide</button>')
           }
         })
       }
+      
+     
     </script>
     
   </head>
@@ -349,7 +356,7 @@
                 <br>
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
-                <form name="form_params" method="GET">
+                <form name=[{"welcome"=>"to edhub.io API"}]>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -360,7 +367,7 @@
                     
                       <tr>
                         <td></td>
-                        <td><input type="text" name=></td>
+                        <td><input type="text" name= ></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -412,7 +419,7 @@
                 <br>
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
-                <form name="form_params" method="GET">
+                <form name=[{"welcome"=>"to edhub.io API"}]>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -423,7 +430,7 @@
                     
                       <tr>
                         <td></td>
-                        <td><input type="text" name=></td>
+                        <td><input type="text" name= ></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -630,32 +637,9 @@
         
             
               <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/time </b></span>
-                <br>
-                <br>
-                <b>Description:</b> [{"time"=>"2013-12-14 13:27:53"}]
-                <form name="form_params" method="GET">
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
-                    
-                      <tr>
-                        <td></td>
-                        <td><input type="text" name=></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    
-                  </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/time', this)" type="button">Try it out</button>
-                </form>
+                <span class="method_failed">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
+                <p class="failed">Request FAILED.</p>
               </li>
             
             <br>
@@ -664,7 +648,7 @@
             
               <li class="box">
                 <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/time </b></span>
+                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -674,7 +658,7 @@
             
               <li class="box">
                 <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/time </b></span>
+                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -684,7 +668,7 @@
             
               <li class="box">
                 <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/time </b></span>
+                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -788,7 +772,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Oauth2 Edhub.io API login - wont work 
-                <form name="form_params" method="GET">
+                <form name=Oauth2 Edhub.io API login - wont work >
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -799,14 +783,14 @@
                     
                       <tr>
                         <td>username</td>
-                        <td><input type="text" name=username></td>
+                        <td><input type="text" name=username ></td>
                         <td>string</td>
                         <td>Account username</td>
                       </tr>
                     
                       <tr>
                         <td>password</td>
-                        <td><input type="text" name=password></td>
+                        <td><input type="text" name=password ></td>
                         <td>string</td>
                         <td>Account password</td>
                       </tr>
@@ -888,7 +872,7 @@
                 <br>
                 <br>
                 <b>Description:</b> OAuth2 check Authorization for Account
-                <form name="form_params" method="GET">
+                <form name=OAuth2 check Authorization for Account>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -899,14 +883,14 @@
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
                     
                       <tr>
                         <td>account_id</td>
-                        <td><input type="text" name=account_id></td>
+                        <td><input type="text" name=account_id ></td>
                         <td>string</td>
                         <td>Account ID to request the permissions from</td>
                       </tr>
@@ -958,7 +942,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account give permission to Client
-                <form name="form_params" method="GET">
+                <form name=Account give permission to Client>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -969,7 +953,7 @@
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
@@ -1021,7 +1005,7 @@
                 <br>
                 <br>
                 <b>Description:</b> OAuth2 Authorization point
-                <form name="form_params" method="GET">
+                <form name=OAuth2 Authorization point>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1032,28 +1016,28 @@
                     
                       <tr>
                         <td>response_type</td>
-                        <td><input type="text" name=response_type></td>
+                        <td><input type="text" name=response_type ></td>
                         <td>string</td>
                         <td>Response type that want the API to use</td>
                       </tr>
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
                     
                       <tr>
                         <td>redirect_uri</td>
-                        <td><input type="text" name=redirect_uri></td>
+                        <td><input type="text" name=redirect_uri ></td>
                         <td>string</td>
                         <td>URL to be redirected back</td>
                       </tr>
                     
                       <tr>
                         <td>scope</td>
-                        <td><input type="text" name=scope></td>
+                        <td><input type="text" name=scope ></td>
                         <td>string</td>
                         <td>Scope of the authorization</td>
                       </tr>
@@ -1115,7 +1099,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Authenticating the Account
-                <form name="form_params" method="GET">
+                <form name=Authenticating the Account>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1126,21 +1110,21 @@
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
                     
                       <tr>
                         <td>client_secret</td>
-                        <td><input type="text" name=client_secret></td>
+                        <td><input type="text" name=client_secret ></td>
                         <td>string</td>
                         <td>Client secret</td>
                       </tr>
                     
                       <tr>
                         <td>response_type</td>
-                        <td><input type="text" name=response_type></td>
+                        <td><input type="text" name=response_type ></td>
                         <td>string</td>
                         <td>Response from the API</td>
                       </tr>
@@ -1192,7 +1176,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get Access Token from the API
-                <form name="form_params" method="GET">
+                <form name=Get Access Token from the API>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1203,42 +1187,42 @@
                     
                       <tr>
                         <td>grant_type</td>
-                        <td><input type="text" name=grant_type></td>
+                        <td><input type="text" name=grant_type ></td>
                         <td>string</td>
                         <td>Authentication method</td>
                       </tr>
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
                     
                       <tr>
                         <td>client_secret</td>
-                        <td><input type="text" name=client_secret></td>
+                        <td><input type="text" name=client_secret ></td>
                         <td>string</td>
                         <td>Client SECRET</td>
                       </tr>
                     
                       <tr>
                         <td>auth_code</td>
-                        <td><input type="text" name=auth_code></td>
+                        <td><input type="text" name=auth_code ></td>
                         <td>string</td>
                         <td>Code require only when `grant_type` is `code`</td>
                       </tr>
                     
                       <tr>
                         <td>username</td>
-                        <td><input type="text" name=username></td>
+                        <td><input type="text" name=username ></td>
                         <td>string</td>
                         <td>Account username</td>
                       </tr>
                     
                       <tr>
                         <td>password</td>
-                        <td><input type="text" name=password></td>
+                        <td><input type="text" name=password ></td>
                         <td>string</td>
                         <td>Account password</td>
                       </tr>
@@ -1290,7 +1274,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Refresh Account or Application Token
-                <form name="form_params" method="GET">
+                <form name=Refresh Account or Application Token>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1301,14 +1285,14 @@
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
                     
                       <tr>
                         <td>refresh_token</td>
-                        <td><input type="text" name=refresh_token></td>
+                        <td><input type="text" name=refresh_token ></td>
                         <td>string</td>
                         <td>Refresh token</td>
                       </tr>
@@ -1360,7 +1344,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Exchange access_token for another token with 2 months experiotion date
-                <form name="form_params" method="GET">
+                <form name=Exchange access_token for another token with 2 months experiotion date>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1371,14 +1355,14 @@
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client Key</td>
                       </tr>
                     
                       <tr>
                         <td>exchange_token</td>
-                        <td><input type="text" name=exchange_token></td>
+                        <td><input type="text" name=exchange_token ></td>
                         <td>string</td>
                         <td>Access Token</td>
                       </tr>
@@ -1430,7 +1414,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Creating BATCH request
-                <form name="form_params" method="GET">
+                <form name=Creating BATCH request>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1441,7 +1425,7 @@
                     
                       <tr>
                         <td>batch</td>
-                        <td><input type="text" name=batch></td>
+                        <td><input type="text" name=batch ></td>
                         <td>array</td>
                         <td>Batch list </td>
                       </tr>
@@ -1923,7 +1907,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Getting properties
-                <form name="form_params" method="GET">
+                <form name=Getting properties>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1934,21 +1918,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>object</td>
-                        <td><input type="text" name=object></td>
+                        <td><input type="text" name=object ></td>
                         <td>string</td>
                         <td>Object</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>Object id</td>
                       </tr>
@@ -1970,7 +1954,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Saving properties
-                <form name="form_params" method="GET">
+                <form name=Saving properties>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1981,21 +1965,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>object</td>
-                        <td><input type="text" name=object></td>
+                        <td><input type="text" name=object ></td>
                         <td>string</td>
                         <td>Object</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>Object id</td>
                       </tr>
@@ -2037,7 +2021,7 @@
                 <br>
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
-                <form name="form_params" method="GET">
+                <form name=List of Accounts inside EdHub.io>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2048,28 +2032,28 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>limit</td>
-                        <td><input type="text" name=limit></td>
+                        <td><input type="text" name=limit ></td>
                         <td>integer</td>
                         <td>Number of items to return</td>
                       </tr>
                     
                       <tr>
                         <td>offset</td>
-                        <td><input type="text" name=offset></td>
+                        <td><input type="text" name=offset ></td>
                         <td>integer</td>
                         <td>Offset of items</td>
                       </tr>
@@ -2091,7 +2075,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Register account into EdHub database.
-                <form name="form_params" method="GET">
+                <form name=Register account into EdHub database.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2102,77 +2086,77 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>first_name</td>
-                        <td><input type="text" name=first_name></td>
+                        <td><input type="text" name=first_name ></td>
                         <td>string</td>
                         <td>Owner first name</td>
                       </tr>
                     
                       <tr>
                         <td>last_name</td>
-                        <td><input type="text" name=last_name></td>
+                        <td><input type="text" name=last_name ></td>
                         <td>string</td>
                         <td>Owner last name</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Account Avatar image</td>
                       </tr>
                     
                       <tr>
                         <td>code</td>
-                        <td><input type="text" name=code></td>
+                        <td><input type="text" name=code ></td>
                         <td>string</td>
                         <td>Group code for auto-assign account to group</td>
                       </tr>
                     
                       <tr>
                         <td>username</td>
-                        <td><input type="text" name=username></td>
+                        <td><input type="text" name=username ></td>
                         <td>string</td>
                         <td>Username or Email address</td>
                       </tr>
                     
                       <tr>
                         <td>password</td>
-                        <td><input type="text" name=password></td>
+                        <td><input type="text" name=password ></td>
                         <td>string</td>
                         <td>Password for login</td>
                       </tr>
                     
                       <tr>
                         <td>email</td>
-                        <td><input type="text" name=email></td>
+                        <td><input type="text" name=email ></td>
                         <td>string</td>
                         <td>Email address used to identify or contact</td>
                       </tr>
                     
                       <tr>
                         <td>type</td>
-                        <td><input type="text" name=type></td>
+                        <td><input type="text" name=type ></td>
                         <td>string</td>
                         <td>Account type</td>
                       </tr>
                     
                       <tr>
                         <td>status</td>
-                        <td><input type="text" name=status></td>
+                        <td><input type="text" name=status ></td>
                         <td>string</td>
                         <td>Status</td>
                       </tr>
                     
                       <tr>
                         <td>code</td>
-                        <td><input type="text" name=code></td>
+                        <td><input type="text" name=code ></td>
                         <td>string</td>
                         <td>Code to assign account to group or school</td>
                       </tr>
@@ -2214,7 +2198,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name="form_params" method="GET">
+                <form name=Account details>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2225,21 +2209,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2271,7 +2255,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name="form_params" method="GET">
+                <form name=Update Account information.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2282,21 +2266,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Account Avatar image</td>
                       </tr>
@@ -2328,7 +2312,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get school that belongs to account
-                <form name="form_params" method="GET">
+                <form name=Get school that belongs to account>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2339,14 +2323,14 @@
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2398,7 +2382,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get groups that belongs to account
-                <form name="form_params" method="GET">
+                <form name=Get groups that belongs to account>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2409,21 +2393,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2475,7 +2459,7 @@
                 <br>
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
-                <form name="form_params" method="GET">
+                <form name=List of Accounts inside EdHub.io>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2486,28 +2470,28 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>limit</td>
-                        <td><input type="text" name=limit></td>
+                        <td><input type="text" name=limit ></td>
                         <td>integer</td>
                         <td>Number of items to return</td>
                       </tr>
                     
                       <tr>
                         <td>offset</td>
-                        <td><input type="text" name=offset></td>
+                        <td><input type="text" name=offset ></td>
                         <td>integer</td>
                         <td>Offset of items</td>
                       </tr>
@@ -2529,7 +2513,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Register account into EdHub database.
-                <form name="form_params" method="GET">
+                <form name=Register account into EdHub database.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2540,77 +2524,77 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>first_name</td>
-                        <td><input type="text" name=first_name></td>
+                        <td><input type="text" name=first_name ></td>
                         <td>string</td>
                         <td>Owner first name</td>
                       </tr>
                     
                       <tr>
                         <td>last_name</td>
-                        <td><input type="text" name=last_name></td>
+                        <td><input type="text" name=last_name ></td>
                         <td>string</td>
                         <td>Owner last name</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Account Avatar image</td>
                       </tr>
                     
                       <tr>
                         <td>code</td>
-                        <td><input type="text" name=code></td>
+                        <td><input type="text" name=code ></td>
                         <td>string</td>
                         <td>Group code for auto-assign account to group</td>
                       </tr>
                     
                       <tr>
                         <td>username</td>
-                        <td><input type="text" name=username></td>
+                        <td><input type="text" name=username ></td>
                         <td>string</td>
                         <td>Username or Email address</td>
                       </tr>
                     
                       <tr>
                         <td>password</td>
-                        <td><input type="text" name=password></td>
+                        <td><input type="text" name=password ></td>
                         <td>string</td>
                         <td>Password for login</td>
                       </tr>
                     
                       <tr>
                         <td>email</td>
-                        <td><input type="text" name=email></td>
+                        <td><input type="text" name=email ></td>
                         <td>string</td>
                         <td>Email address used to identify or contact</td>
                       </tr>
                     
                       <tr>
                         <td>type</td>
-                        <td><input type="text" name=type></td>
+                        <td><input type="text" name=type ></td>
                         <td>string</td>
                         <td>Account type</td>
                       </tr>
                     
                       <tr>
                         <td>status</td>
-                        <td><input type="text" name=status></td>
+                        <td><input type="text" name=status ></td>
                         <td>string</td>
                         <td>Status</td>
                       </tr>
                     
                       <tr>
                         <td>code</td>
-                        <td><input type="text" name=code></td>
+                        <td><input type="text" name=code ></td>
                         <td>string</td>
                         <td>Code to assign account to group or school</td>
                       </tr>
@@ -2652,7 +2636,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name="form_params" method="GET">
+                <form name=Account details>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2663,21 +2647,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2699,7 +2683,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Check if account is valid.
-                <form name="form_params" method="GET">
+                <form name=Check if account is valid.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2710,7 +2694,7 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -2732,7 +2716,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name="form_params" method="GET">
+                <form name=Update Account information.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2743,21 +2727,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Account Avatar image</td>
                       </tr>
@@ -2789,7 +2773,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name="form_params" method="GET">
+                <form name=Account details>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2800,21 +2784,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2846,7 +2830,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name="form_params" method="GET">
+                <form name=Update Account information.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2857,21 +2841,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Account Avatar image</td>
                       </tr>
@@ -2903,7 +2887,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Returns Account by activation token provided
-                <form name="form_params" method="GET">
+                <form name=Returns Account by activation token provided>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2914,7 +2898,7 @@
                     
                       <tr>
                         <td>activation_token</td>
-                        <td><input type="text" name=activation_token></td>
+                        <td><input type="text" name=activation_token ></td>
                         <td>string</td>
                         <td>Activation token</td>
                       </tr>
@@ -2946,7 +2930,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Activating Account by activation token provided and params
-                <form name="form_params" method="GET">
+                <form name=Activating Account by activation token provided and params>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2957,7 +2941,7 @@
                     
                       <tr>
                         <td>activation_token</td>
-                        <td><input type="text" name=activation_token></td>
+                        <td><input type="text" name=activation_token ></td>
                         <td>string</td>
                         <td>Activation token</td>
                       </tr>
@@ -2989,7 +2973,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Assign Account to Client
-                <form name="form_params" method="GET">
+                <form name=Assign Account to Client>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3000,21 +2984,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>account_id</td>
-                        <td><input type="text" name=account_id></td>
+                        <td><input type="text" name=account_id ></td>
                         <td>string</td>
                         <td>Account ID</td>
                       </tr>
                     
                       <tr>
                         <td>client_key</td>
-                        <td><input type="text" name=client_key></td>
+                        <td><input type="text" name=client_key ></td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
@@ -3066,7 +3050,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Search for account
-                <form name="form_params" method="GET">
+                <form name=Search for account>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3077,14 +3061,14 @@
                     
                       <tr>
                         <td>username</td>
-                        <td><input type="text" name=username></td>
+                        <td><input type="text" name=username ></td>
                         <td>string</td>
                         <td>acc_user</td>
                       </tr>
                     
                       <tr>
                         <td>email</td>
-                        <td><input type="text" name=email></td>
+                        <td><input type="text" name=email ></td>
                         <td>string</td>
                         <td>acc_email</td>
                       </tr>
@@ -3146,7 +3130,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create Client Application for OAuth2
-                <form name="form_params" method="GET">
+                <form name=Create Client Application for OAuth2>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3157,42 +3141,42 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>name</td>
-                        <td><input type="text" name=name></td>
+                        <td><input type="text" name=name ></td>
                         <td>string</td>
                         <td>Application name</td>
                       </tr>
                     
                       <tr>
                         <td>created_from</td>
-                        <td><input type="text" name=created_from></td>
+                        <td><input type="text" name=created_from ></td>
                         <td>string</td>
                         <td>User who created the client</td>
                       </tr>
                     
                       <tr>
                         <td>site_uri</td>
-                        <td><input type="text" name=site_uri></td>
+                        <td><input type="text" name=site_uri ></td>
                         <td>string</td>
                         <td>Client Website</td>
                       </tr>
                     
                       <tr>
                         <td>redirect_uri</td>
-                        <td><input type="text" name=redirect_uri></td>
+                        <td><input type="text" name=redirect_uri ></td>
                         <td>string</td>
                         <td>Page called after authorization</td>
                       </tr>
                     
                       <tr>
                         <td>info</td>
-                        <td><input type="text" name=info></td>
+                        <td><input type="text" name=info ></td>
                         <td>string</td>
                         <td>Additional information</td>
                       </tr>
@@ -3234,7 +3218,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name="form_params" method="GET">
+                <form name=Get list all schools>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3260,7 +3244,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name="form_params" method="GET">
+                <form name=Create new school.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3271,21 +3255,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>name</td>
-                        <td><input type="text" name=name></td>
+                        <td><input type="text" name=name ></td>
                         <td>string</td>
                         <td>Name of the school</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Image of the scool logo</td>
                       </tr>
@@ -3327,7 +3311,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Single School
-                <form name="form_params" method="GET">
+                <form name=Single School>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3338,21 +3322,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the school</td>
                       </tr>
@@ -3384,7 +3368,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name="form_params" method="GET">
+                <form name=>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3395,14 +3379,14 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the school</td>
                       </tr>
@@ -3434,7 +3418,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name="form_params" method="GET">
+                <form name=>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3470,7 +3454,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name="form_params" method="GET">
+                <form name=>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3481,14 +3465,14 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the school</td>
                       </tr>
@@ -3520,7 +3504,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Single School
-                <form name="form_params" method="GET">
+                <form name=Single School>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3531,21 +3515,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>fields</td>
-                        <td><input type="text" name=fields></td>
+                        <td><input type="text" name=fields ></td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>ID of the school</td>
                       </tr>
@@ -3597,7 +3581,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name="form_params" method="GET">
+                <form name=Get list all schools>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3623,7 +3607,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name="form_params" method="GET">
+                <form name=Create new school.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3634,21 +3618,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>name</td>
-                        <td><input type="text" name=name></td>
+                        <td><input type="text" name=name ></td>
                         <td>string</td>
                         <td>Name of the school</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Image of the scool logo</td>
                       </tr>
@@ -3690,7 +3674,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name="form_params" method="GET">
+                <form name=Get list all schools>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3716,7 +3700,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name="form_params" method="GET">
+                <form name=Create new school.>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3727,21 +3711,21 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
                         <td>name</td>
-                        <td><input type="text" name=name></td>
+                        <td><input type="text" name=name ></td>
                         <td>string</td>
                         <td>Name of the school</td>
                       </tr>
                     
                       <tr>
                         <td>image</td>
-                        <td><input type="text" name=image></td>
+                        <td><input type="text" name=image ></td>
                         <td>string</td>
                         <td>Image of the scool logo</td>
                       </tr>
@@ -3863,7 +3847,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account Information
-                <form name="form_params" method="GET">
+                <form name=Account Information>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3874,7 +3858,7 @@
                     
                       <tr>
                         <td>access_token</td>
-                        <td><input type="text" name=access_token></td>
+                        <td><input type="text" name=access_token ></td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -3926,7 +3910,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name="form_params" method="GET">
+                <form name=>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3937,7 +3921,7 @@
                     
                       <tr>
                         <td>token</td>
-                        <td><input type="text" name=token></td>
+                        <td><input type="text" name=token ></td>
                         <td>string</td>
                         <td>access token</td>
                       </tr>
@@ -3989,7 +3973,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get all students for given group
-                <form name="form_params" method="GET">
+                <form name=Get all students for given group>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -4000,7 +3984,7 @@
                     
                       <tr>
                         <td>id</td>
-                        <td><input type="text" name=id></td>
+                        <td><input type="text" name=id ></td>
                         <td>string</td>
                         <td>Group ID</td>
                       </tr>

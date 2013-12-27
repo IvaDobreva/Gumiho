@@ -14,6 +14,7 @@ module GenerateDoc
 
   end
 
+###Methods used in the template file
   def parse_response(response, params)
     result = response
     params.each do |param|
@@ -56,10 +57,6 @@ module GenerateDoc
     data = parse_response(response, params)
 
     return data   
-  end
-
-  def form_name
-    'formParams'
   end
 
 end

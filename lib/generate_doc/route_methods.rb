@@ -2,6 +2,7 @@ require 'net/http'
 require 'openssl'
 require 'json'
 require 'awesome_print'
+
 module JSON
   def self.is_json?(foo)
     begin
@@ -50,6 +51,9 @@ module GenerateDoc
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(request)
     end
+
+    #p response.body
+    #puts "\n\n\n"
    
     if JSON.is_json?(response.body)
       json_data = JSON.parse(response.body)
@@ -90,9 +94,9 @@ module GenerateDoc
     
   end
 
-  #Example filter for routes containing 'route'
+  #Example filter for routes containing given substring used in generate_doc
   def route_filter(path)
-    path.include? 'routes'
+    path.include? 'time'
   end
 
 end

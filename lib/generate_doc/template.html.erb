@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
   
     <style>
       div.main {
@@ -62,24 +61,28 @@
       overflow: auto;
       display: none;}
     </style>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
-      replace_params = function() {}
+      function hideResult(button) {
+        $(button).hide()
+      }
     
       tryMe = function(method, url, button){
-        
         form = $(button).parent()
+        inputs = form.find('input')
         
-        inputs = form.select('input')
-  
         data = {}
-  
-        $.each(inputs, function(index, value){
-          value = $(value)
-          data[value.attr('name')] = data[value.attr('value')]
+        
+        inputs.each(function(index) {
+          if(url.indexOf(':' + $(this).attr('name')) >= 0) {
+            url=url.replace(':' + $(this).attr('name'), $(this).val()) 
+          } else {
+            data[$(this).attr('name')] = $(this).val()
+          }
         })
-
+        
         $.ajax({ type: method,
           url: url,
           data: data,
@@ -88,10 +91,12 @@
             str = JSON.stringify(data, undefined, 4)
             form.find('.requested_url').html(url).css('display', 'block')
             form.find('.response_box').html(str).css('display', 'block')
-            form.append('<button onclick="hideResult()">Hide</button>')
+            form.append('<button onclick="hideResult(this)">Hide</button>')
           }
         })
       }
+      
+     
     </script>
     
   </head>
@@ -107,8 +112,8 @@
                 <span class="url"><b><%=res[:url]%> </b></span>
                 <br>
                 <br>
-                <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
-                <form name="form_params" method="GET">
+                <b>Description:</b> <%=desc = map_string(res[:response], 'data.description')%>
+                <form name=<%=desc%>>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -119,7 +124,7 @@
                     <%map_array(res[:response], 'data.params') do |param_data|%>
                       <tr>
                         <td><%=name = map_string(param_data,'name')%></td>
-                        <td><input type="text" name=<%=name%>></td>
+                        <td><input type="text" name=<%=name%> ></td>
                         <td><%=map_string(param_data,'type')%></td>
                         <td><%=map_string(param_data,'description')%></td>
                       </tr>
