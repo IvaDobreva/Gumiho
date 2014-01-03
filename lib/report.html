@@ -65,8 +65,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
-      function hideResult(button) {
-        $(button).hide()
+    
+      toggleResult = function(button) {
+        $('.result').toggle()
+        $(button).html('Show')
       }
     
       tryMe = function(method, url, button){
@@ -83,8 +85,6 @@
           }
         })
         
-        console.log(data)
-        
         $.ajax({ type: method,
           url: url,
           data: data,
@@ -93,8 +93,8 @@
             str = JSON.stringify(data, undefined, 4)
             form.find('.requested_url').html(url).css('display', 'block')
             form.find('.response_box').html(str).css('display', 'block')
-            //form.find('button[type='submit']').prop('disabled',true)
-            form.append('<button onclick="hideResult(this) type="button" ">Hide</button>')
+            form.append('<button onclick="resetForm(form)" type="button">Reset</button>')
+            form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
           }
         })
       }
@@ -356,7 +356,7 @@
                 <br>
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
-                <form name=[{"welcome"=>"to edhub.io API"}]>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -373,8 +373,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -419,7 +421,7 @@
                 <br>
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
-                <form name=[{"welcome"=>"to edhub.io API"}]>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -436,8 +438,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -772,7 +776,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Oauth2 Edhub.io API login - wont work 
-                <form name=Oauth2 Edhub.io API login - wont work >
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -796,8 +800,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/login', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -872,7 +878,7 @@
                 <br>
                 <br>
                 <b>Description:</b> OAuth2 check Authorization for Account
-                <form name=OAuth2 check Authorization for Account>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -896,8 +902,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/permissions', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -942,7 +950,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account give permission to Client
-                <form name=Account give permission to Client>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -959,8 +967,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/perm', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1005,7 +1015,7 @@
                 <br>
                 <br>
                 <b>Description:</b> OAuth2 Authorization point
-                <form name=OAuth2 Authorization point>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1043,8 +1053,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/auth', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1099,7 +1111,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Authenticating the Account
-                <form name=Authenticating the Account>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1130,8 +1142,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/authorize', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1176,7 +1190,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get Access Token from the API
-                <form name=Get Access Token from the API>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1228,8 +1242,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1274,7 +1290,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Refresh Account or Application Token
-                <form name=Refresh Account or Application Token>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1298,8 +1314,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/refresh', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1344,7 +1362,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Exchange access_token for another token with 2 months experiotion date
-                <form name=Exchange access_token for another token with 2 months experiotion date>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1368,8 +1386,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/exchange', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1414,7 +1434,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Creating BATCH request
-                <form name=Creating BATCH request>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1431,8 +1451,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/batch', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1907,7 +1929,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Getting properties
-                <form name=Getting properties>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1938,8 +1960,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -1954,7 +1978,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Saving properties
-                <form name=Saving properties>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -1985,8 +2009,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2021,7 +2047,7 @@
                 <br>
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
-                <form name=List of Accounts inside EdHub.io>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2059,8 +2085,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2075,7 +2103,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Register account into EdHub database.
-                <form name=Register account into EdHub database.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2162,8 +2190,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2198,7 +2228,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name=Account details>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2229,8 +2259,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2255,7 +2287,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name=Update Account information.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2286,8 +2318,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2312,7 +2346,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get school that belongs to account
-                <form name=Get school that belongs to account>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2336,8 +2370,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id/school', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2382,7 +2418,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get groups that belongs to account
-                <form name=Get groups that belongs to account>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2413,8 +2449,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id/groups', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2459,7 +2497,7 @@
                 <br>
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
-                <form name=List of Accounts inside EdHub.io>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2497,8 +2535,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2513,7 +2553,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Register account into EdHub database.
-                <form name=Register account into EdHub database.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2600,8 +2640,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2636,7 +2678,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name=Account details>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2667,8 +2709,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2683,7 +2727,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Check if account is valid.
-                <form name=Check if account is valid.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2700,8 +2744,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2716,7 +2762,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name=Update Account information.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2747,8 +2793,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2773,7 +2821,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account details
-                <form name=Account details>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2804,8 +2852,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2830,7 +2880,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Update Account information.
-                <form name=Update Account information.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2861,8 +2911,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2887,7 +2939,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Returns Account by activation token provided
-                <form name=Returns Account by activation token provided>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2904,8 +2956,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2930,7 +2984,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Activating Account by activation token provided and params
-                <form name=Activating Account by activation token provided and params>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -2947,8 +3001,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -2973,7 +3029,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Assign Account to Client
-                <form name=Assign Account to Client>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3004,8 +3060,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3050,7 +3108,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Search for account
-                <form name=Search for account>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3074,8 +3132,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/search', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3130,7 +3190,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create Client Application for OAuth2
-                <form name=Create Client Application for OAuth2>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3182,8 +3242,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/clients', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3218,7 +3280,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name=Get list all schools>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3228,8 +3290,10 @@
                    </tr> 
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3244,7 +3308,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name=Create new school.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3275,8 +3339,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3311,7 +3377,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Single School
-                <form name=Single School>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3342,8 +3408,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3368,7 +3436,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name=>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3392,8 +3460,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3418,7 +3488,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name=>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3428,8 +3498,10 @@
                    </tr> 
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/new', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3454,7 +3526,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name=>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3478,8 +3550,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/new', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3504,7 +3578,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Single School
-                <form name=Single School>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3535,8 +3609,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3581,7 +3657,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name=Get list all schools>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3591,8 +3667,10 @@
                    </tr> 
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3607,7 +3685,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name=Create new school.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3638,8 +3716,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3674,7 +3754,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get list all schools
-                <form name=Get list all schools>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3684,8 +3764,10 @@
                    </tr> 
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3700,7 +3782,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Create new school.
-                <form name=Create new school.>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3731,8 +3813,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3847,7 +3931,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Account Information
-                <form name=Account Information>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3864,8 +3948,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/me', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3910,7 +3996,7 @@
                 <br>
                 <br>
                 <b>Description:</b> 
-                <form name=>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3927,8 +4013,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/me/:token', this)" type="button">Try it out</button>
                 </form>
               </li>
@@ -3973,7 +4061,7 @@
                 <br>
                 <br>
                 <b>Description:</b> Get all students for given group
-                <form name=Get all students for given group>
+                <form>
                  <table class ="params">
                    <tr>
                     <th><b>Name</b></th>
@@ -3990,8 +4078,10 @@
                       </tr>
                     
                   </table>
-                  <pre class="requested_url"></pre>
-                  <pre class="response_box" ></pre>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/groups/:id/students', this)" type="button">Try it out</button>
                 </form>
               </li>

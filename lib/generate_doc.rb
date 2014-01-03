@@ -31,14 +31,14 @@ module GenerateDoc
     end
 
   else 
-    #Creates new PathConfig object with following params
-    
+
     #Checks SSL param from the command line
     ssl = false
     if params[:ssl]=='true'
       ssl = true
     end    
-
+    
+    #Creates new PathConfig object with following params
     path_conf = PathConfig.new(params[:protocol], params[:hostname],
                                params[:port], params[:route], ssl)
 
