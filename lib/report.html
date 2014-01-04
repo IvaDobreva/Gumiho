@@ -65,10 +65,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
+  
+      var done = false
     
       toggleResult = function(button) {
         $('.result').toggle()
-        $(button).html('Show')
+        
+        if($(button).html() == 'Hide') {
+          $(button).html('Show')
+        } else {
+          $(button).html('Hide')
+        }
       }
     
       tryMe = function(method, url, button){
@@ -93,12 +100,12 @@
             str = JSON.stringify(data, undefined, 4)
             form.find('.requested_url').html(url).css('display', 'block')
             form.find('.response_box').html(str).css('display', 'block')
-            form.append('<button onclick="resetForm(form)" type="button">Reset</button>')
-            form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
+            if(form.find('button[onclick="toggleResult(this)"]').length==0) {
+              form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
+            }
           }
         })
       }
-      
      
     </script>
     
@@ -357,13 +364,13 @@
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td></td>
@@ -422,13 +429,13 @@
                 <br>
                 <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td></td>
@@ -777,13 +784,13 @@
                 <br>
                 <b>Description:</b> Oauth2 Edhub.io API login - wont work 
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>username</td>
@@ -879,13 +886,13 @@
                 <br>
                 <b>Description:</b> OAuth2 check Authorization for Account
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>client_key</td>
@@ -951,13 +958,13 @@
                 <br>
                 <b>Description:</b> Account give permission to Client
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>client_key</td>
@@ -1016,13 +1023,13 @@
                 <br>
                 <b>Description:</b> OAuth2 Authorization point
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>response_type</td>
@@ -1112,13 +1119,13 @@
                 <br>
                 <b>Description:</b> Authenticating the Account
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>client_key</td>
@@ -1191,13 +1198,13 @@
                 <br>
                 <b>Description:</b> Get Access Token from the API
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>grant_type</td>
@@ -1291,13 +1298,13 @@
                 <br>
                 <b>Description:</b> Refresh Account or Application Token
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>client_key</td>
@@ -1363,13 +1370,13 @@
                 <br>
                 <b>Description:</b> Exchange access_token for another token with 2 months experiotion date
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>client_key</td>
@@ -1435,13 +1442,13 @@
                 <br>
                 <b>Description:</b> Creating BATCH request
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>batch</td>
@@ -1930,13 +1937,13 @@
                 <br>
                 <b>Description:</b> Getting properties
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -1979,13 +1986,13 @@
                 <br>
                 <b>Description:</b> Saving properties
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2048,13 +2055,13 @@
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2104,13 +2111,13 @@
                 <br>
                 <b>Description:</b> Register account into EdHub database.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2229,13 +2236,13 @@
                 <br>
                 <b>Description:</b> Account details
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2288,13 +2295,13 @@
                 <br>
                 <b>Description:</b> Update Account information.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2347,13 +2354,13 @@
                 <br>
                 <b>Description:</b> Get school that belongs to account
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>fields</td>
@@ -2419,13 +2426,13 @@
                 <br>
                 <b>Description:</b> Get groups that belongs to account
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2498,13 +2505,13 @@
                 <br>
                 <b>Description:</b> List of Accounts inside EdHub.io
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2554,13 +2561,13 @@
                 <br>
                 <b>Description:</b> Register account into EdHub database.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2679,13 +2686,13 @@
                 <br>
                 <b>Description:</b> Account details
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2728,13 +2735,13 @@
                 <br>
                 <b>Description:</b> Check if account is valid.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2763,13 +2770,13 @@
                 <br>
                 <b>Description:</b> Update Account information.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2822,13 +2829,13 @@
                 <br>
                 <b>Description:</b> Account details
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2881,13 +2888,13 @@
                 <br>
                 <b>Description:</b> Update Account information.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -2940,13 +2947,13 @@
                 <br>
                 <b>Description:</b> Returns Account by activation token provided
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>activation_token</td>
@@ -2985,13 +2992,13 @@
                 <br>
                 <b>Description:</b> Activating Account by activation token provided and params
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>activation_token</td>
@@ -3030,13 +3037,13 @@
                 <br>
                 <b>Description:</b> Assign Account to Client
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3109,13 +3116,13 @@
                 <br>
                 <b>Description:</b> Search for account
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>username</td>
@@ -3191,13 +3198,13 @@
                 <br>
                 <b>Description:</b> Create Client Application for OAuth2
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3281,13 +3288,13 @@
                 <br>
                 <b>Description:</b> Get list all schools
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                   </table>
                   <div class="result">
@@ -3309,13 +3316,13 @@
                 <br>
                 <b>Description:</b> Create new school.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3378,13 +3385,13 @@
                 <br>
                 <b>Description:</b> Single School
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3437,13 +3444,13 @@
                 <br>
                 <b>Description:</b> 
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3489,13 +3496,13 @@
                 <br>
                 <b>Description:</b> 
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                   </table>
                   <div class="result">
@@ -3527,13 +3534,13 @@
                 <br>
                 <b>Description:</b> 
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3579,13 +3586,13 @@
                 <br>
                 <b>Description:</b> Single School
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3658,13 +3665,13 @@
                 <br>
                 <b>Description:</b> Get list all schools
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                   </table>
                   <div class="result">
@@ -3686,13 +3693,13 @@
                 <br>
                 <b>Description:</b> Create new school.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3755,13 +3762,13 @@
                 <br>
                 <b>Description:</b> Get list all schools
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                   </table>
                   <div class="result">
@@ -3783,13 +3790,13 @@
                 <br>
                 <b>Description:</b> Create new school.
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3932,13 +3939,13 @@
                 <br>
                 <b>Description:</b> Account Information
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>access_token</td>
@@ -3997,13 +4004,13 @@
                 <br>
                 <b>Description:</b> 
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>token</td>
@@ -4062,13 +4069,13 @@
                 <br>
                 <b>Description:</b> Get all students for given group
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     
                       <tr>
                         <td>id</td>

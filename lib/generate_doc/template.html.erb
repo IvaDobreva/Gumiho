@@ -68,7 +68,12 @@
     
       toggleResult = function(button) {
         $('.result').toggle()
-        $(button).html('Show')
+        
+        if($(button).html() == 'Hide') {
+          $(button).html('Show')
+        } else {
+          $(button).html('Hide')
+        }
       }
     
       tryMe = function(method, url, button){
@@ -93,12 +98,12 @@
             str = JSON.stringify(data, undefined, 4)
             form.find('.requested_url').html(url).css('display', 'block')
             form.find('.response_box').html(str).css('display', 'block')
-            form.append('<button onclick="clearForm()" type="button">Reset</button>')
-            form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
+            if(form.find('button[onclick="toggleResult(this)"]').length==0) {
+              form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
+            }
           }
         })
       }
-      
      
     </script>
     
@@ -117,13 +122,13 @@
                 <br>
                 <b>Description:</b> <%=desc = map_string(res[:response], 'data.description')%>
                 <form>
-                 <table class ="params">
-                   <tr>
-                    <th><b>Name</b></th>
-                    <th><b>Value</b></th>
-                    <th><b>Type</b></th>
-                    <th><b>Description</b></th>
-                   </tr> 
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
                     <%map_array(res[:response], 'data.params') do |param_data|%>
                       <tr>
                         <td><%=name = map_string(param_data,'name')%></td>
