@@ -1,0 +1,6 @@
+#!/Users/vlad/.rvm/rubies/ruby-2.0.0-p195/bin/ruby
+
+require_relative '../lib/generate_doc.rb'
+GENERATE_DOC_ROOT_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../'))
+
+GenerateDoc.run()

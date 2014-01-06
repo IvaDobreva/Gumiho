@@ -79,16 +79,19 @@
       tryMe = function(method, url, button){
         form = $(button).parent()
         inputs = form.find('input')
-        
+        valid = true
         data = {}
         
         inputs.each(function(index) {
+    
           if(url.indexOf(':' + $(this).attr('name')) >= 0) {
             url=url.replace(':' + $(this).attr('name'), $(this).val()) 
           } else {
             data[$(this).attr('name')] = $(this).val()
           }
         })
+  
+        //Proverka za validnost na parametrite
         
         $.ajax({ type: method,
           url: url,
@@ -101,8 +104,12 @@
             if(form.find('button[onclick="toggleResult(this)"]').length==0) {
               form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
             }
+          },
+          error: function(data) {
+            //alert("slon")
           }
         })
+        
       }
      
     </script>
@@ -120,12 +127,13 @@
                 <span class="url"><b><%=res[:url]%> </b></span>
                 <br>
                 <br>
-                <b>Description:</b> <%=desc = map_string(res[:response], 'data.description')%>
+                <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
                 <form>
                   <table class ="params">
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -133,6 +141,7 @@
                       <tr>
                         <td><%=name = map_string(param_data,'name')%></td>
                         <td><input type="text" name=<%=name%> ></td>
+                        <td><%=map_string(param_data,'options.require')%></td>
                         <td><%=map_string(param_data,'type')%></td>
                         <td><%=map_string(param_data,'description')%></td>
                       </tr>

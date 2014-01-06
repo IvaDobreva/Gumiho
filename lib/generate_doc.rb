@@ -56,16 +56,15 @@ module GenerateDoc
      
       params[:methods].each do |method|
         case method
-        when 'GET'
-          response << { :method => 'GET', :url => path, :response => get_method(path, path_conf.ssl) }
+        when 'GET' 
+          response << { :method => 'GET', :url => path, :response => get_method(path, path_conf.ssl) } if route['method'] == 'get'
         when 'POST'
-          response << { :method => 'POST', :url => path, :response => post_method(path, path_conf.ssl) }     
-        when 'PUT'
-          response << { :method => 'PUT', :url => path, :response => put_method(path, path_conf.ssl) }
+          response << { :method => 'POST', :url => path, :response => post_method(path, path_conf.ssl) } if route['method'] == 'post'
+        when 'PUT' 
+          response << { :method => 'PUT', :url => path, :response => put_method(path, path_conf.ssl) } if route['method'] == 'put'
         when 'DELETE'
-          response << { :method => 'DELETE', :url => path, :response => delete_method(path, path_conf.ssl) }
+          response << { :method => 'DELETE', :url => path, :response => delete_method(path, path_conf.ssl) } if route['method'] == 'delete'
         end
-
       end
     end
 

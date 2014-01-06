@@ -8,7 +8,7 @@ module GenerateDoc
 
     template = File.open(template_file, 'r').read
     erb = ERB.new(template)
-    File.open("report.html", 'w+') { 
+    File.open(File.join(File.dirname(__FILE__), '../', "report.html"), 'w+') { 
       |file| file.write(erb.result(binding)) 
     }
 

@@ -65,8 +65,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
-  
-      var done = false
     
       toggleResult = function(button) {
         $('.result').toggle()
@@ -81,16 +79,19 @@
       tryMe = function(method, url, button){
         form = $(button).parent()
         inputs = form.find('input')
-        
+        valid = true
         data = {}
         
         inputs.each(function(index) {
+    
           if(url.indexOf(':' + $(this).attr('name')) >= 0) {
             url=url.replace(':' + $(this).attr('name'), $(this).val()) 
           } else {
             data[$(this).attr('name')] = $(this).val()
           }
         })
+  
+        //Proverka za validnost na parametrite
         
         $.ajax({ type: method,
           url: url,
@@ -103,8 +104,12 @@
             if(form.find('button[onclick="toggleResult(this)"]').length==0) {
               form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
             }
+          },
+          error: function(data) {
+            //alert("slon")
           }
         })
+        
       }
      
     </script>
@@ -128,67 +133,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_application </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_application </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_application </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_account </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_account </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/create_account </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/create_account </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -208,67 +153,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/boot_app </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/boot_app </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/boot_app </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/boot_app </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -288,67 +173,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/test_mail </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/test_mail </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/test_mail </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/deliveries </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/deliveries </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/test/forms/deliveries </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/deliveries </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -368,6 +193,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -375,6 +201,7 @@
                       <tr>
                         <td></td>
                         <td><input type="text" name= ></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -393,132 +220,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <br>
-                <br>
-                <b>Description:</b> [{"welcome"=>"to edhub.io API"}]
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td></td>
-                        <td><input type="text" name= ></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/401 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/401 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/401 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/error/401 </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -538,67 +240,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/402 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/402 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/402 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/404 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/404 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/404 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/error/404 </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -618,148 +260,8 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/500 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/500 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/error/500 </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/routes </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/test </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/test </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/test </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/test </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/demo </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/demo </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/demo </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/demo </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -778,172 +280,8 @@
         
             
               <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/login </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Oauth2 Edhub.io API login - wont work 
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>username</td>
-                        <td><input type="text" name=username ></td>
-                        <td>string</td>
-                        <td>Account username</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>password</td>
-                        <td><input type="text" name=password ></td>
-                        <td>string</td>
-                        <td>Account password</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/login', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/login </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/login </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/logout </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/logout </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/logout </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/logout </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/permissions </b></span>
-                <br>
-                <br>
-                <b>Description:</b> OAuth2 check Authorization for Account
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>client_key</td>
-                        <td><input type="text" name=client_key ></td>
-                        <td>string</td>
-                        <td>Client KEY</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>account_id</td>
-                        <td><input type="text" name=account_id ></td>
-                        <td>string</td>
-                        <td>Account ID to request the permissions from</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/permissions', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/permissions </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/permissions </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/permissions </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -962,6 +300,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -969,6 +308,7 @@
                       <tr>
                         <td>client_key</td>
                         <td><input type="text" name=client_key ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
@@ -987,29 +327,44 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/perm </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/perm </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/perm </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/permissions </b></span>
+                <br>
+                <br>
+                <b>Description:</b> OAuth2 check Authorization for Account
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>client_key</td>
+                        <td><input type="text" name=client_key ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client KEY</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>account_id</td>
+                        <td><input type="text" name=account_id ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Account ID to request the permissions from</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/permissions', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -1027,6 +382,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1034,6 +390,7 @@
                       <tr>
                         <td>response_type</td>
                         <td><input type="text" name=response_type ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Response type that want the API to use</td>
                       </tr>
@@ -1041,6 +398,7 @@
                       <tr>
                         <td>client_key</td>
                         <td><input type="text" name=client_key ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
@@ -1048,6 +406,7 @@
                       <tr>
                         <td>redirect_uri</td>
                         <td><input type="text" name=redirect_uri ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>URL to be redirected back</td>
                       </tr>
@@ -1055,6 +414,7 @@
                       <tr>
                         <td>scope</td>
                         <td><input type="text" name=scope ></td>
+                        <td></td>
                         <td>string</td>
                         <td>Scope of the authorization</td>
                       </tr>
@@ -1073,455 +433,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/auth </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/auth </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/auth </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/authorize </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Authenticating the Account
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>client_key</td>
-                        <td><input type="text" name=client_key ></td>
-                        <td>string</td>
-                        <td>Client KEY</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>client_secret</td>
-                        <td><input type="text" name=client_secret ></td>
-                        <td>string</td>
-                        <td>Client secret</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>response_type</td>
-                        <td><input type="text" name=response_type ></td>
-                        <td>string</td>
-                        <td>Response from the API</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/authorize', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/authorize </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Get Access Token from the API
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>grant_type</td>
-                        <td><input type="text" name=grant_type ></td>
-                        <td>string</td>
-                        <td>Authentication method</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>client_key</td>
-                        <td><input type="text" name=client_key ></td>
-                        <td>string</td>
-                        <td>Client KEY</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>client_secret</td>
-                        <td><input type="text" name=client_secret ></td>
-                        <td>string</td>
-                        <td>Client SECRET</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>auth_code</td>
-                        <td><input type="text" name=auth_code ></td>
-                        <td>string</td>
-                        <td>Code require only when `grant_type` is `code`</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>username</td>
-                        <td><input type="text" name=username ></td>
-                        <td>string</td>
-                        <td>Account username</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>password</td>
-                        <td><input type="text" name=password ></td>
-                        <td>string</td>
-                        <td>Account password</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/refresh </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/refresh </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Refresh Account or Application Token
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>client_key</td>
-                        <td><input type="text" name=client_key ></td>
-                        <td>string</td>
-                        <td>Client KEY</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>refresh_token</td>
-                        <td><input type="text" name=refresh_token ></td>
-                        <td>string</td>
-                        <td>Refresh token</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/refresh', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/refresh </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/refresh </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/exchange </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/exchange </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Exchange access_token for another token with 2 months experiotion date
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>client_key</td>
-                        <td><input type="text" name=client_key ></td>
-                        <td>string</td>
-                        <td>Client Key</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>exchange_token</td>
-                        <td><input type="text" name=exchange_token ></td>
-                        <td>string</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/exchange', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/exchange </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/exchange </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/batch </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/batch </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Creating BATCH request
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>batch</td>
-                        <td><input type="text" name=batch ></td>
-                        <td>array</td>
-                        <td>Batch list </td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/batch', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/batch </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/batch </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/teachers </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -1541,28 +453,8 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id </b></span>
+                <span class="method_failed">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/school </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -1581,107 +473,7 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/sections </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -1701,108 +493,8 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method_failed">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/students/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/teachers </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/teachers </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -1821,28 +513,8 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/school </b></span>
+                <span class="method_failed">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/teachers </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -1852,76 +524,6 @@
             
               <li class="box">
                 <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/sections </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/contacts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/contacts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/contacts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/contacts </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
@@ -1941,6 +543,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1948,6 +551,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -1955,6 +559,7 @@
                       <tr>
                         <td>object</td>
                         <td><input type="text" name=object ></td>
+                        <td></td>
                         <td>string</td>
                         <td>Object</td>
                       </tr>
@@ -1962,6 +567,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td></td>
                         <td>string</td>
                         <td>Object id</td>
                       </tr>
@@ -1980,75 +586,6 @@
         
             
               <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/:object/:id/properties </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Saving properties
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>object</td>
-                        <td><input type="text" name=object ></td>
-                        <td>string</td>
-                        <td>Object</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>Object id</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/:object/:id/properties </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/:object/:id/properties </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
                 <br>
@@ -2059,6 +596,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -2066,6 +604,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -2073,6 +612,7 @@
                       <tr>
                         <td>fields</td>
                         <td><input type="text" name=fields ></td>
+                        <td>false</td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
@@ -2080,6 +620,7 @@
                       <tr>
                         <td>limit</td>
                         <td><input type="text" name=limit ></td>
+                        <td></td>
                         <td>integer</td>
                         <td>Number of items to return</td>
                       </tr>
@@ -2087,6 +628,7 @@
                       <tr>
                         <td>offset</td>
                         <td><input type="text" name=offset ></td>
+                        <td></td>
                         <td>integer</td>
                         <td>Offset of items</td>
                       </tr>
@@ -2105,131 +647,6 @@
         
             
               <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Register account into EdHub database.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>first_name</td>
-                        <td><input type="text" name=first_name ></td>
-                        <td>string</td>
-                        <td>Owner first name</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>last_name</td>
-                        <td><input type="text" name=last_name ></td>
-                        <td>string</td>
-                        <td>Owner last name</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Account Avatar image</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>code</td>
-                        <td><input type="text" name=code ></td>
-                        <td>string</td>
-                        <td>Group code for auto-assign account to group</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>username</td>
-                        <td><input type="text" name=username ></td>
-                        <td>string</td>
-                        <td>Username or Email address</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>password</td>
-                        <td><input type="text" name=password ></td>
-                        <td>string</td>
-                        <td>Password for login</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>email</td>
-                        <td><input type="text" name=email ></td>
-                        <td>string</td>
-                        <td>Email address used to identify or contact</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>type</td>
-                        <td><input type="text" name=type ></td>
-                        <td>string</td>
-                        <td>Account type</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>status</td>
-                        <td><input type="text" name=status ></td>
-                        <td>string</td>
-                        <td>Status</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>code</td>
-                        <td><input type="text" name=code ></td>
-                        <td>string</td>
-                        <td>Code to assign account to group or school</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
                 <br>
@@ -2240,6 +657,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -2247,6 +665,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -2254,6 +673,7 @@
                       <tr>
                         <td>fields</td>
                         <td><input type="text" name=fields ></td>
+                        <td>false</td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
@@ -2261,6 +681,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2279,75 +700,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Update Account information.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the account</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Account Avatar image</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/school </b></span>
                 <br>
@@ -2358,6 +710,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -2365,6 +718,7 @@
                       <tr>
                         <td>fields</td>
                         <td><input type="text" name=fields ></td>
+                        <td>false</td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
@@ -2372,6 +726,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2390,36 +745,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/school </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/groups </b></span>
                 <br>
@@ -2430,6 +755,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -2437,6 +763,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -2444,6 +771,7 @@
                       <tr>
                         <td>fields</td>
                         <td><input type="text" name=fields ></td>
+                        <td>false</td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
@@ -2451,6 +779,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>ID of the account</td>
                       </tr>
@@ -2469,478 +798,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/groups </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/groups </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id/groups </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <br>
-                <br>
-                <b>Description:</b> List of Accounts inside EdHub.io
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>fields</td>
-                        <td><input type="text" name=fields ></td>
-                        <td>fields</td>
-                        <td>Selectable fields for the response</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>limit</td>
-                        <td><input type="text" name=limit ></td>
-                        <td>integer</td>
-                        <td>Number of items to return</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>offset</td>
-                        <td><input type="text" name=offset ></td>
-                        <td>integer</td>
-                        <td>Offset of items</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Register account into EdHub database.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>first_name</td>
-                        <td><input type="text" name=first_name ></td>
-                        <td>string</td>
-                        <td>Owner first name</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>last_name</td>
-                        <td><input type="text" name=last_name ></td>
-                        <td>string</td>
-                        <td>Owner last name</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Account Avatar image</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>code</td>
-                        <td><input type="text" name=code ></td>
-                        <td>string</td>
-                        <td>Group code for auto-assign account to group</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>username</td>
-                        <td><input type="text" name=username ></td>
-                        <td>string</td>
-                        <td>Username or Email address</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>password</td>
-                        <td><input type="text" name=password ></td>
-                        <td>string</td>
-                        <td>Password for login</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>email</td>
-                        <td><input type="text" name=email ></td>
-                        <td>string</td>
-                        <td>Email address used to identify or contact</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>type</td>
-                        <td><input type="text" name=type ></td>
-                        <td>string</td>
-                        <td>Account type</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>status</td>
-                        <td><input type="text" name=status ></td>
-                        <td>string</td>
-                        <td>Status</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>code</td>
-                        <td><input type="text" name=code ></td>
-                        <td>string</td>
-                        <td>Code to assign account to group or school</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/valid </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Account details
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>fields</td>
-                        <td><input type="text" name=fields ></td>
-                        <td>fields</td>
-                        <td>Selectable fields for the response</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the account</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/valid </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Check if account is valid.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/valid </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Update Account information.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the account</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Account Avatar image</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/valid </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Account details
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>fields</td>
-                        <td><input type="text" name=fields ></td>
-                        <td>fields</td>
-                        <td>Selectable fields for the response</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the account</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Update Account information.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the account</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Account Avatar image</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts/activate/:activation_token </b></span>
                 <br>
@@ -2951,6 +808,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -2958,6 +816,7 @@
                       <tr>
                         <td>activation_token</td>
                         <td><input type="text" name=activation_token ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Activation token</td>
                       </tr>
@@ -2976,61 +835,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/activate/:activation_token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/activate/:activation_token </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Activating Account by activation token provided and params
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>activation_token</td>
-                        <td><input type="text" name=activation_token ></td>
-                        <td>string</td>
-                        <td>Activation token</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/activate/:activation_token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key </b></span>
                 <br>
@@ -3041,6 +845,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3048,6 +853,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -3055,6 +861,7 @@
                       <tr>
                         <td>account_id</td>
                         <td><input type="text" name=account_id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Account ID</td>
                       </tr>
@@ -3062,6 +869,7 @@
                       <tr>
                         <td>client_key</td>
                         <td><input type="text" name=client_key ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Client KEY</td>
                       </tr>
@@ -3080,36 +888,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/search </b></span>
                 <br>
@@ -3120,6 +898,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3127,6 +906,7 @@
                       <tr>
                         <td>username</td>
                         <td><input type="text" name=username ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>acc_user</td>
                       </tr>
@@ -3134,6 +914,7 @@
                       <tr>
                         <td>email</td>
                         <td><input type="text" name=email ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>acc_email</td>
                       </tr>
@@ -3152,136 +933,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/search </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/search </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/search </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/clients </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/clients </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Create Client Application for OAuth2
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>name</td>
-                        <td><input type="text" name=name ></td>
-                        <td>string</td>
-                        <td>Application name</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>created_from</td>
-                        <td><input type="text" name=created_from ></td>
-                        <td>string</td>
-                        <td>User who created the client</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>site_uri</td>
-                        <td><input type="text" name=site_uri ></td>
-                        <td>string</td>
-                        <td>Client Website</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>redirect_uri</td>
-                        <td><input type="text" name=redirect_uri ></td>
-                        <td>string</td>
-                        <td>Page called after authorization</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>info</td>
-                        <td><input type="text" name=info ></td>
-                        <td>string</td>
-                        <td>Additional information</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/clients', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/clients </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/clients </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
                 <br>
@@ -3292,6 +943,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3310,179 +962,28 @@
         
             
               <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Create new school.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>name</td>
-                        <td><input type="text" name=name ></td>
-                        <td>string</td>
-                        <td>Name of the school</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Image of the scool logo</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
+                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
                 <br>
                 <br>
-                <b>Description:</b> Single School
+                <b>Description:</b> Get list all schools
                 <form>
                   <table class ="params">
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>fields</td>
-                        <td><input type="text" name=fields ></td>
-                        <td>fields</td>
-                        <td>Selectable fields for the response</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the school</td>
-                      </tr>
                     
                   </table>
                   <div class="result">
                     <pre class="requested_url"></pre>
                     <pre class="response_box" ></pre>
                   </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
+                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
-                <br>
-                <br>
-                <b>Description:</b> 
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the school</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
-                <p class="failed">Request FAILED.</p>
               </li>
             
             <br>
@@ -3500,6 +1001,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3518,68 +1020,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/new </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/new </b></span>
-                <br>
-                <br>
-                <b>Description:</b> 
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>id</td>
-                        <td><input type="text" name=id ></td>
-                        <td>string</td>
-                        <td>ID of the school</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/new', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/new </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id/accounts </b></span>
                 <br>
@@ -3590,6 +1030,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3597,6 +1038,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -3604,6 +1046,7 @@
                       <tr>
                         <td>fields</td>
                         <td><input type="text" name=fields ></td>
+                        <td>false</td>
                         <td>fields</td>
                         <td>Selectable fields for the response</td>
                       </tr>
@@ -3611,6 +1054,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>ID of the school</td>
                       </tr>
@@ -3629,74 +1073,17 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id/accounts </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
+                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
                 <br>
                 <br>
-                <b>Description:</b> Get list all schools
+                <b>Description:</b> Single School
                 <form>
                   <table class ="params">
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Create new school.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3704,22 +1091,25 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
                     
                       <tr>
-                        <td>name</td>
-                        <td><input type="text" name=name ></td>
-                        <td>string</td>
-                        <td>Name of the school</td>
+                        <td>fields</td>
+                        <td><input type="text" name=fields ></td>
+                        <td>false</td>
+                        <td>fields</td>
+                        <td>Selectable fields for the response</td>
                       </tr>
                     
                       <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
+                        <td>id</td>
+                        <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
-                        <td>Image of the scool logo</td>
+                        <td>ID of the school</td>
                       </tr>
                     
                   </table>
@@ -3727,165 +1117,8 @@
                     <pre class="requested_url"></pre>
                     <pre class="response_box" ></pre>
                   </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
+                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
                 </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Get list all schools
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <br>
-                <br>
-                <b>Description:</b> Create new school.
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                      <tr>
-                        <td>access_token</td>
-                        <td><input type="text" name=access_token ></td>
-                        <td>access_token</td>
-                        <td>Access Token</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>name</td>
-                        <td><input type="text" name=name ></td>
-                        <td>string</td>
-                        <td>Name of the school</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>image</td>
-                        <td><input type="text" name=image ></td>
-                        <td>string</td>
-                        <td>Image of the scool logo</td>
-                      </tr>
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
-                <p class="failed">Request FAILED.</p>
               </li>
             
             <br>
@@ -3903,28 +1136,8 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/app_scope </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/app_scope </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/app_scope </b></span>
+                <span class="method_failed">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
             
@@ -3943,6 +1156,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -3950,6 +1164,7 @@
                       <tr>
                         <td>access_token</td>
                         <td><input type="text" name=access_token ></td>
+                        <td>true</td>
                         <td>access_token</td>
                         <td>Access Token</td>
                       </tr>
@@ -3968,36 +1183,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/me/:token </b></span>
                 <br>
@@ -4008,6 +1193,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -4015,6 +1201,7 @@
                       <tr>
                         <td>token</td>
                         <td><input type="text" name=token ></td>
+                        <td></td>
                         <td>string</td>
                         <td>access token</td>
                       </tr>
@@ -4033,36 +1220,6 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me/:token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me/:token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/me/:token </b></span>
-                <p class="failed">Request FAILED.</p>
-              </li>
-            
-            <br>
-            <br> 
-        
-            
-              <li class="box">
                 <span class="method">GET</span> 
                 <span class="url"><b>http://0.0.0.0:4000/v1/groups/:id/students </b></span>
                 <br>
@@ -4073,6 +1230,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
+                       <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -4080,6 +1238,7 @@
                       <tr>
                         <td>id</td>
                         <td><input type="text" name=id ></td>
+                        <td>true</td>
                         <td>string</td>
                         <td>Group ID</td>
                       </tr>
@@ -4098,9 +1257,44 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/login </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Oauth2 Edhub.io API login - wont work 
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>username</td>
+                        <td><input type="text" name=username ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Account username</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>password</td>
+                        <td><input type="text" name=password ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Account password</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/login', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -4108,9 +1302,52 @@
         
             
               <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/authorize </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Authenticating the Account
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>client_key</td>
+                        <td><input type="text" name=client_key ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client KEY</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>client_secret</td>
+                        <td><input type="text" name=client_secret ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Client secret</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>response_type</td>
+                        <td><input type="text" name=response_type ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Response from the API</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/authorize', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -4118,9 +1355,76 @@
         
             
               <li class="box">
-                <span class="method_failed">DELETE</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:id/students </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Get Access Token from the API
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>grant_type</td>
+                        <td><input type="text" name=grant_type ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Authentication method</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>client_key</td>
+                        <td><input type="text" name=client_key ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client KEY</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>client_secret</td>
+                        <td><input type="text" name=client_secret ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Client SECRET</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>auth_code</td>
+                        <td><input type="text" name=auth_code ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Code require only when `grant_type` is `code`</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>username</td>
+                        <td><input type="text" name=username ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Account username</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>password</td>
+                        <td><input type="text" name=password ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Account password</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -4128,9 +1432,44 @@
         
             
               <li class="box">
-                <span class="method_failed">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:group_id/students/:student_id </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/exchange </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Exchange access_token for another token with 2 months experiotion date
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>client_key</td>
+                        <td><input type="text" name=client_key ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client Key</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>exchange_token</td>
+                        <td><input type="text" name=exchange_token ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/exchange', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -4138,9 +1477,44 @@
         
             
               <li class="box">
-                <span class="method_failed">POST</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:group_id/students/:student_id </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/token/refresh </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Refresh Account or Application Token
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>client_key</td>
+                        <td><input type="text" name=client_key ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client KEY</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>refresh_token</td>
+                        <td><input type="text" name=refresh_token ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Refresh token</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/refresh', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
@@ -4148,9 +1522,508 @@
         
             
               <li class="box">
-                <span class="method_failed">PUT</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/groups/:group_id/students/:student_id </b></span>
-                <p class="failed">Request FAILED.</p>
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/batch </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Creating BATCH request
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>batch</td>
+                        <td><input type="text" name=batch ></td>
+                        <td>true</td>
+                        <td>array</td>
+                        <td>Batch list </td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/batch', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/:object/:id/properties </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Saving properties
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>object</td>
+                        <td><input type="text" name=object ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Object</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>id</td>
+                        <td><input type="text" name=id ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Object id</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/valid </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Check if account is valid.
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/accounts </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Register account into EdHub database.
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>first_name</td>
+                        <td><input type="text" name=first_name ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Owner first name</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>last_name</td>
+                        <td><input type="text" name=last_name ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Owner last name</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>image</td>
+                        <td><input type="text" name=image ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Account Avatar image</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>code</td>
+                        <td><input type="text" name=code ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Group code for auto-assign account to group</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>username</td>
+                        <td><input type="text" name=username ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Username or Email address</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>password</td>
+                        <td><input type="text" name=password ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Password for login</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>email</td>
+                        <td><input type="text" name=email ></td>
+                        <td>false</td>
+                        <td>string</td>
+                        <td>Email address used to identify or contact</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>type</td>
+                        <td><input type="text" name=type ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Account type</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>status</td>
+                        <td><input type="text" name=status ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Status</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>code</td>
+                        <td><input type="text" name=code ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Code to assign account to group or school</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/clients </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Create Client Application for OAuth2
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>name</td>
+                        <td><input type="text" name=name ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Application name</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>created_from</td>
+                        <td><input type="text" name=created_from ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>User who created the client</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>site_uri</td>
+                        <td><input type="text" name=site_uri ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Client Website</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>redirect_uri</td>
+                        <td><input type="text" name=redirect_uri ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Page called after authorization</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>info</td>
+                        <td><input type="text" name=info ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Additional information</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/clients', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">POST</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Create new school.
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>name</td>
+                        <td><input type="text" name=name ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Name of the school</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>image</td>
+                        <td><input type="text" name=image ></td>
+                        <td>false</td>
+                        <td>string</td>
+                        <td>Image of the scool logo</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">PUT</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/:id </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Update Account information.
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>id</td>
+                        <td><input type="text" name=id ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>ID of the account</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>image</td>
+                        <td><input type="text" name=image ></td>
+                        <td></td>
+                        <td>string</td>
+                        <td>Account Avatar image</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">PUT</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/accounts/activate/:activation_token </b></span>
+                <br>
+                <br>
+                <b>Description:</b> Activating Account by activation token provided and params
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>activation_token</td>
+                        <td><input type="text" name=activation_token ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>Activation token</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
+                </form>
+              </li>
+            
+            <br>
+            <br> 
+        
+            
+              <li class="box">
+                <span class="method">PUT</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/schools/:id </b></span>
+                <br>
+                <br>
+                <b>Description:</b> 
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                       <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                      <tr>
+                        <td>access_token</td>
+                        <td><input type="text" name=access_token ></td>
+                        <td>true</td>
+                        <td>access_token</td>
+                        <td>Access Token</td>
+                      </tr>
+                    
+                      <tr>
+                        <td>id</td>
+                        <td><input type="text" name=id ></td>
+                        <td>true</td>
+                        <td>string</td>
+                        <td>ID of the school</td>
+                      </tr>
+                    
+                  </table>
+                  <div class="result">
+                    <pre class="requested_url"></pre>
+                    <pre class="response_box" ></pre>
+                  </div>
+                  <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
+                </form>
               </li>
             
             <br>
