@@ -15,7 +15,8 @@ module GenerateDoc
   end
 
 ###Methods used in the template file
-  def parse_response(response, params)
+  def parse_response(response, template_param)
+    params = template_param.split('.')
     result = response
     params.each do |param|
       result = result[param] if result.class == Hash
@@ -27,17 +28,15 @@ module GenerateDoc
 ######CHECK HTTTP REQUEST STATUS !!!!!
   def check_status(response)
     template_params = 'metadata.status'
-    params = template_params.split('.')
-    status = parse_response(response, params)
+    status = parse_response(response, template_params)
     return status
   end
 ######
 
   def map_array(response, template_param)
-    params = template_param.split('.')
     
     result = Array.new
-    data = parse_response(response, params)
+    data = parse_response(response, template_param)
 
     if data.class == Array and data.empty? == false
       result.push(data)
@@ -52,10 +51,7 @@ module GenerateDoc
   end
 
   def map_string(response, template_param)
-    params = template_param.split('.')
-  
-    data = parse_response(response, params)
-
+    data = parse_response(response, template_param)
     return data   
   end
 
