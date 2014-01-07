@@ -67,7 +67,7 @@
     <script type="text/javascript">
     
       toggleResult = function(button) {
-        $('.result').toggle()
+        $('.result').toggle('slow')
         
         if($(button).html() == 'Hide') {
           $(button).html('Show')
@@ -79,9 +79,9 @@
       tryMe = function(method, url, button){
         form = $(button).parent()
         inputs = form.find('input')
-        valid = true
         data = {}
         
+        old_url=url
         inputs.each(function(index) {
     
           if(url.indexOf(':' + $(this).attr('name')) >= 0) {
@@ -90,8 +90,6 @@
             data[$(this).attr('name')] = $(this).val()
           }
         })
-  
-        //Proverka za validnost na parametrite
         
         $.ajax({ type: method,
           url: url,
@@ -106,7 +104,21 @@
             }
           },
           error: function(data) {
-            //alert("slon")
+            inputs.each(function(index){
+              if(old_url.indexOf(':'+$(this).attr('name'))>=0) {
+                input_name = 'input[name='+$(this).attr('name')+']'
+                form.find(input_name).val('Enter content').css('color', 'red')
+              }
+            })
+            
+            inputs.focus(function() {
+              if($(this).val()=='Enter content') {
+                $(this).animate({color:'white'}, 500, function() {
+                  $(this).val('').css('color', 'black')
+                })
+              }
+            })
+            
           }
         })
         
@@ -193,7 +205,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -300,7 +312,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -337,7 +349,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -382,7 +394,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -543,7 +555,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -596,7 +608,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -657,7 +669,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -710,7 +722,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -755,7 +767,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -808,7 +820,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -845,7 +857,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -898,7 +910,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -943,7 +955,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -972,7 +984,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1001,7 +1013,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1030,7 +1042,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1083,7 +1095,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1156,7 +1168,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1193,7 +1205,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1230,7 +1242,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1267,7 +1279,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1312,7 +1324,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1365,7 +1377,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1442,7 +1454,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1487,7 +1499,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1532,7 +1544,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1569,7 +1581,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1622,7 +1634,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1659,7 +1671,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1776,7 +1788,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1853,7 +1865,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1906,7 +1918,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1959,7 +1971,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
@@ -1996,7 +2008,7 @@
                     <tr>
                       <th><b>Name</b></th>
                       <th><b>Value</b></th>
-                       <th><b>Require</b></th>
+                      <th><b>Require</b></th>
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
