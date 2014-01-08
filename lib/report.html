@@ -7,7 +7,7 @@
       width: 1000px;
       margin: auto;}
     
-      li.box {
+      .box {
       display: block;
       padding: 10px 10px;
       font-size: 14px;
@@ -17,7 +17,7 @@
       border-color: black;
       border-radius: 5px;}
               
-      span.method {
+      .method {
       background-color:#6fc717;
       padding: 10px 10px;
       border-radius: 5px;
@@ -26,26 +26,26 @@
       font-weight:bold;}
                     
       .response_box {
-      display: none;
+      display: block;
       padding: 10px;
       background-color: white;
       height: 250px;
       overflow: auto;
       border-radius: 5px;}
       
-      table.params {
+      .params {
       border-collapse: collapse; 
       width: 100%;
       border-bottom: 1px solid #889098;}
       
-      table.params td, th {border-top: 1px solid #889098;}
+      .params td, th {border-top: 1px solid #889098;}
         
-      p.failed {
+      .failed {
       font-weight:bold;
       color: #bb132a;
       font-size: 16px;}
       
-      span.method_failed {
+      .method_failed {
       background-color:#bb132a;
       padding: 10px 10px;
       border-radius: 5px;
@@ -59,11 +59,33 @@
       border-radius: 5px;
       padding: 10px;
       overflow: auto;
-      display: none;}
+      display: block;}
       
       .description {
-      display:block;
+      display: block;
       padding: 12px 0px;}
+      
+      .response_headers {
+      background-color: white;
+      padding: 10px;
+      height: 100px;
+      overflow: auto;
+      border-radius: 5px;
+      display: block;}
+      
+      .result {
+      display: none;}
+      
+      .response_h {
+      font-weight: bold;}
+      
+      .response_code {
+      display: block;
+      background-color: white;
+      padding: 10px;
+      height: 20px;
+      overflow: auto;
+      border-radius: 5px;}
     </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -99,10 +121,15 @@
           url: url,
           data: data,
           dataType: 'json', 
-          success: function(data){
+          success: function( data, textStatus, jqXHR ){
+            console.log($(this).val())
             str = JSON.stringify(data, undefined, 4)
-            form.find('.requested_url').html(url).css('display', 'block')
-            form.find('.response_box').html(str).css('display', 'block')
+            form.find('.result').show()
+            form.find('.requested_url').html(url)
+            form.find('.response_box').html(str)
+            form.find('.response_headers').html(jqXHR.getAllResponseHeaders())
+            form.find('.response_code').html(jqXHR.status)
+            
             if(form.find('button[onclick="toggleResult(this)"]').length==0) {
               form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
             }
@@ -117,7 +144,7 @@
             
             inputs.focus(function() {
               if($(this).val()=='Enter content') {
-                $(this).animate({color:'white'}, 500, function() {
+                $(this).animate({color:'white'}, 100, function() {
                   $(this).val('').css('color', 'black')
                 })
               }
@@ -144,7 +171,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -152,7 +178,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/create_account </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -162,7 +187,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -170,7 +194,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/boot_app </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -180,7 +203,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -188,7 +210,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/test/forms/deliveries </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -216,13 +237,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -232,7 +258,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -240,7 +265,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/error/402 </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -250,7 +274,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -258,7 +281,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/error/500 </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -268,7 +290,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -277,7 +298,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -285,7 +305,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/oauth2/logout </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -313,13 +332,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/perm', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -355,13 +379,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/permissions', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -413,13 +442,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/oauth2/auth', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -429,7 +463,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -437,7 +470,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -447,7 +479,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -455,7 +486,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/teachers/:id/students </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -465,7 +495,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -473,7 +502,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/students </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -483,7 +511,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -491,7 +518,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/school </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -501,7 +527,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -509,7 +534,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/students/:id/contacts </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -553,13 +577,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -611,13 +640,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -661,13 +695,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -703,13 +742,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id/school', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -753,13 +797,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/:id/groups', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -787,13 +836,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -837,13 +891,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/accounts/assign/:account_id/:client_key', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -879,13 +938,49 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/search', this)" type="button">Try it out</button>
                 </form>
               </li>
             
+        
+            
+              <li class="box">
+                <span class="method">GET</span> 
+                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
+                <span class="description"><b>Description:</b> Get list all schools </span>
+                <form>
+                  <table class ="params">
+                    <tr>
+                      <th><b>Name</b></th>
+                      <th><b>Value</b></th>
+                      <th><b>Require</b></th>
+                      <th><b>Type</b></th>
+                      <th><b>Description</b></th>
+                    </tr> 
+                    
+                  </table>
+                  <div class="result">
+                    <span class="response_h">Requested url</span>
+                    <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
+                    <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
+                  </div>
+                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
+                </form>
+              </li>
             
         
             
@@ -905,39 +1000,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
-            
-        
-            
-              <li class="box">
-                <span class="method">GET</span> 
-                <span class="url"><b>http://0.0.0.0:4000/v1/schools </b></span>
-                <span class="description"><b>Description:</b> Get list all schools </span>
-                <form>
-                  <table class ="params">
-                    <tr>
-                      <th><b>Name</b></th>
-                      <th><b>Value</b></th>
-                      <th><b>Require</b></th>
-                      <th><b>Type</b></th>
-                      <th><b>Description</b></th>
-                    </tr> 
-                    
-                  </table>
-                  <div class="result">
-                    <pre class="requested_url"></pre>
-                    <pre class="response_box" ></pre>
-                  </div>
-                  <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
-                </form>
-              </li>
-            
             
         
             
@@ -957,13 +1031,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/new', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1007,13 +1086,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1057,13 +1141,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1073,7 +1162,6 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             
-            
         
             
               <li class="box">
@@ -1081,7 +1169,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/fixture/reload </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
             
@@ -1109,13 +1196,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/me', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1143,13 +1235,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/me/:token', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1177,13 +1274,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('GET', 'http://0.0.0.0:4000/v1/groups/:id/students', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1219,13 +1321,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/login', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1269,13 +1376,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/authorize', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1343,13 +1455,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1385,13 +1502,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/exchange', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1427,13 +1549,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/oauth2/token/refresh', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1461,13 +1588,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/batch', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1511,13 +1643,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/:object/:id/properties', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1545,13 +1682,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts/valid', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1659,13 +1801,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/accounts', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1733,13 +1880,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/clients', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1783,13 +1935,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('POST', 'http://0.0.0.0:4000/v1/schools', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1833,13 +1990,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1867,13 +2029,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/accounts/activate/:activation_token', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1909,13 +2076,18 @@
                     
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
                   <button onclick="tryMe('PUT', 'http://0.0.0.0:4000/v1/schools/:id', this)" type="button">Try it out</button>
                 </form>
               </li>
-            
             
         
             
@@ -1924,7 +2096,6 @@
                 <span class="url"><b>http://0.0.0.0:4000/v1/groups/:group_id/students/:student_id </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            
             
         
       </ul>

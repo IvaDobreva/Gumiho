@@ -7,7 +7,7 @@
       width: 1000px;
       margin: auto;}
     
-      li.box {
+      .box {
       display: block;
       padding: 10px 10px;
       font-size: 14px;
@@ -17,7 +17,7 @@
       border-color: black;
       border-radius: 5px;}
               
-      span.method {
+      .method {
       background-color:#6fc717;
       padding: 10px 10px;
       border-radius: 5px;
@@ -26,26 +26,26 @@
       font-weight:bold;}
                     
       .response_box {
-      display: none;
+      display: block;
       padding: 10px;
       background-color: white;
       height: 250px;
       overflow: auto;
       border-radius: 5px;}
       
-      table.params {
+      .params {
       border-collapse: collapse; 
       width: 100%;
       border-bottom: 1px solid #889098;}
       
-      table.params td, th {border-top: 1px solid #889098;}
+      .params td, th {border-top: 1px solid #889098;}
         
-      p.failed {
+      .failed {
       font-weight:bold;
       color: #bb132a;
       font-size: 16px;}
       
-      span.method_failed {
+      .method_failed {
       background-color:#bb132a;
       padding: 10px 10px;
       border-radius: 5px;
@@ -59,11 +59,33 @@
       border-radius: 5px;
       padding: 10px;
       overflow: auto;
-      display: none;}
+      display: block;}
       
       .description {
-      display:block;
+      display: block;
       padding: 12px 0px;}
+      
+      .response_headers {
+      background-color: white;
+      padding: 10px;
+      height: 100px;
+      overflow: auto;
+      border-radius: 5px;
+      display: block;}
+      
+      .result {
+      display: none;}
+      
+      .response_h {
+      font-weight: bold;}
+      
+      .response_code {
+      display: block;
+      background-color: white;
+      padding: 10px;
+      height: 20px;
+      overflow: auto;
+      border-radius: 5px;}
     </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -99,10 +121,15 @@
           url: url,
           data: data,
           dataType: 'json', 
-          success: function(data){
+          success: function( data, textStatus, jqXHR ){
+            
             str = JSON.stringify(data, undefined, 4)
-            form.find('.requested_url').html(url).css('display', 'block')
-            form.find('.response_box').html(str).css('display', 'block')
+            form.find('.result').show()
+            form.find('.requested_url').html(url)
+            form.find('.response_box').html(str)
+            form.find('.response_headers').html(jqXHR.getAllResponseHeaders())
+            form.find('.response_code').html(jqXHR.status)
+            
             if(form.find('button[onclick="toggleResult(this)"]').length==0) {
               form.append('<button onclick="toggleResult(this)" type="button">Hide</button>')
             }
@@ -117,7 +144,7 @@
             
             inputs.focus(function() {
               if($(this).val()=='Enter content') {
-                $(this).animate({color:'white'}, 500, function() {
+                $(this).animate({color:'white'}, 100, function() {
                   $(this).val('').css('color', 'black')
                 })
               }
@@ -136,12 +163,12 @@
     <br>
       <div class="main">
         <ul class="items">
-          <%response.each do |res|%>
-            <% if check_status(res[:response])== 'ok'%>
+          <% response.each do |res| %>
+            <% if check_status(res[:response]) == 'ok' %>
               <li class="box">
-                <span class="method"><%=res[:method]%></span> 
-                <span class="url"><b><%=res[:url]%> </b></span>
-                <span class="description"><b>Description:</b> <%=map_string(res[:response], 'data.description')%> </span>
+                <span class="method"><%= res[:method]  %></span> 
+                <span class="url"><b><%= res[:url]  %> </b></span>
+                <span class="description"><b>Description:</b> <%=  map_string(res[:response], 'data.description') %> </span>
                 <form>
                   <table class ="params">
                     <tr>
@@ -151,32 +178,37 @@
                       <th><b>Type</b></th>
                       <th><b>Description</b></th>
                     </tr> 
-                    <%map_array(res[:response], 'data.params') do |param_data|%>
+                    <% map_array(res[:response], 'data.params') do |param_data| %>
                       <tr>
-                        <td><%=name = map_string(param_data,'name')%></td>
-                        <td><input type="text" name=<%=name%> ></td>
-                        <td><%=map_string(param_data,'options.require')%></td>
-                        <td><%=map_string(param_data,'type')%></td>
-                        <td><%=map_string(param_data,'description')%></td>
+                        <td><%= name = map_string(param_data,'name') %></td>
+                        <td><input type="text" name=<%= name %> ></td>
+                        <td><%= map_string(param_data,'options.require') %></td>
+                        <td><%= map_string(param_data,'type') %></td>
+                        <td><%= map_string(param_data,'description') %></td>
                       </tr>
-                    <%end%>
+                    <% end %>
                   </table>
                   <div class="result">
+                    <span class="response_h">Requested url</span>
                     <pre class="requested_url"></pre>
+                    <span class="response_h">Response body</span>
                     <pre class="response_box" ></pre>
+                    <span class="response_h">Response headers</span>
+                    <pre class="response_headers"></pre>
+                    <span class="response_h">Response status</span>
+                    <pre class='response_code'></pre>
                   </div>
-                  <button onclick="tryMe('<%=res[:method]%>', '<%=res[:url]%>', this)" type="button">Try it out</button>
+                  <button onclick="tryMe('<%=res[:method] %>', '<%= res[:url] %>', this)" type="button">Try it out</button>
                 </form>
               </li>
-            <%else%>
+            <% else %>
               <li class="box">
-                <span class="method_failed"><%=res[:method]%></span> 
-                <span class="url"><b><%=res[:url]%> </b></span>
+                <span class="method_failed"><%= res[:method] %></span> 
+                <span class="url"><b><%= res[:url] %> </b></span>
                 <p class="failed">Request FAILED.</p>
               </li>
-            <%end%>
-            
-        <%end%>
+            <% end %>
+        <% end %>
       </ul>
     </div>
   </body>
