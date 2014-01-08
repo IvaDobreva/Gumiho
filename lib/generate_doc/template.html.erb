@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-  
+  <title>Generated Documentation</title>
     <style>
       div.main {
       width: 1000px;
       margin: auto;}
     
       li.box {
-      display: inherit;
+      display: block;
       padding: 10px 10px;
       font-size: 14px;
       color: #1a2f43;
-      margin: 0;
+      margin: 25px;
       background-color:#dddddd;
       border-color: black;
       border-radius: 5px;}
@@ -60,6 +60,12 @@
       padding: 10px;
       overflow: auto;
       display: none;}
+      
+      .description {
+      display:block;
+      padding: 12px 0px;}
+      
+      .items{margin-bottom: 10px;}
     </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -131,15 +137,13 @@
   <body>
     <br>
       <div class="main">
-        <ul>
+        <ul class="items">
           <%response.each do |res|%>
             <% if check_status(res[:response])== 'ok'%>
               <li class="box">
                 <span class="method"><%=res[:method]%></span> 
                 <span class="url"><b><%=res[:url]%> </b></span>
-                <br>
-                <br>
-                <b>Description:</b> <%=map_string(res[:response], 'data.description')%>
+                <span class="description"><b>Description:</b> <%=map_string(res[:response], 'data.description')%> </span>
                 <form>
                   <table class ="params">
                     <tr>
@@ -173,8 +177,7 @@
                 <p class="failed">Request FAILED.</p>
               </li>
             <%end%>
-            <br>
-            <br> 
+            
         <%end%>
       </ul>
     </div>
