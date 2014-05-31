@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Ruby gem for creating online RESTful API documentation with possibility to test different HTTP requests}
   spec.summary       = %q{Create API documentation}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = ""
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

@@ -31,7 +31,7 @@ module GenerateDoc
     end
 
   else 
-
+    
     #Checks SSL param from the command line
     ssl = false
     if params[:ssl]=='true'
@@ -44,26 +44,37 @@ module GenerateDoc
 
     template_file = params[:template]
   end
-  
+
   routes_hash = get_method(path_conf.build_path, path_conf.ssl)
-  
   response = []
   
   routes_hash.each do |route|
     
     if route_filter(route['path'])==false
-      path = path_conf.get_method_route(route['path']) 
+      path = path_conf.build_path(route['path']) 
      
       params[:methods].each do |method|
         case method
         when 'GET' 
-          response << { :method => 'GET', :url => path, :response => get_method(path, path_conf.ssl) } if route['method'] == 'get'
+          response << { :method => 'GET', 
+                        :url => path, 
+                        :response => get_method(path, path_conf.ssl) 
+                      } if route['method'].downcase == 'get'
         when 'POST'
-          response << { :method => 'POST', :url => path, :response => post_method(path, path_conf.ssl) } if route['method'] == 'post'
+          response << { :method => 'POST', 
+                        :url => path, 
+                        :response => post_method(path, path_conf.ssl) 
+                      } if route['method'].downcase == 'post'
         when 'PUT' 
-          response << { :method => 'PUT', :url => path, :response => put_method(path, path_conf.ssl) } if route['method'] == 'put'
+          response << { :method => 'PUT', 
+                        :url => path, 
+                        :response => put_method(path, path_conf.ssl) 
+                      } if route['method'].downcase == 'put'
         when 'DELETE'
-          response << { :method => 'DELETE', :url => path, :response => delete_method(path, path_conf.ssl) } if route['method'] == 'delete'
+          response << { :method => 'DELETE', 
+                        :url => path, 
+                        :response => delete_method(path, path_conf.ssl) 
+                      } if route['method'].downcase == 'delete'
         end
       end
     end

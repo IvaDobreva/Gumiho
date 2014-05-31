@@ -91,9 +91,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
     <script type="text/javascript">
-    
       toggleResult = function(button) {
-        $('.result').toggle('slow')
+        form.find('.result').toggle('slow')
         
         if($(button).html() == 'Hide') {
           $(button).html('Show')
@@ -106,8 +105,7 @@
         form = $(button).parent()
         inputs = form.find('input')
         data = {}
-        
-        old_url=url
+        param_url = url
         inputs.each(function(index) {
     
           if(url.indexOf(':' + $(this).attr('name')) >= 0) {
@@ -116,13 +114,14 @@
             data[$(this).attr('name')] = $(this).val()
           }
         })
-        
+       
+
         $.ajax({ type: method,
           url: url,
           data: data,
           dataType: 'json', 
           success: function( data, textStatus, jqXHR ){
-            
+           
             str = JSON.stringify(data, undefined, 4)
             form.find('.result').show()
             form.find('.requested_url').html(url)
@@ -136,15 +135,15 @@
           },
           error: function(data) {
             inputs.each(function(index){
-              if(old_url.indexOf(':'+$(this).attr('name'))>=0) {
+              if(param_url.indexOf(':' + $(this).attr('name'))>=0) {
                 input_name = 'input[name='+$(this).attr('name')+']'
-                form.find(input_name).val('Enter content').css('color', 'red')
+                form.find(input_name).val('required').css('color', 'red')
               }
             })
             
             inputs.focus(function() {
-              if($(this).val()=='Enter content') {
-                $(this).animate({color:'white'}, 100, function() {
+              if($(this).val()=='required') {
+                $(this).animate({color:'red'}, 100, function() {
                   $(this).val('').css('color', 'black')
                 })
               }
@@ -182,9 +181,9 @@
                       <tr>
                         <td><%= name = map_string(param_data,'name') %></td>
                         <td><input type="text" name=<%= name %> ></td>
-                        <td><%= map_string(param_data,'options.require') %></td>
+                        <td><%= map_string(param_data,'required') %></td>
                         <td><%= map_string(param_data,'type') %></td>
-                        <td><%= map_string(param_data,'description') %></td>
+                        <td><%= map_string(param_data,'desc') %></td>
                       </tr>
                     <% end %>
                   </table>
@@ -198,7 +197,7 @@
                     <span class="response_h">Response status</span>
                     <pre class='response_code'></pre>
                   </div>
-                  <button onclick="tryMe('<%=res[:method] %>', '<%= res[:url] %>', this)" type="button">Try it out</button>
+                  <button onclick="tryMe('<%= res[:method] %>', '<%= res[:url] %>', this)" type="button">Try it out</button>
                 </form>
               </li>
             <% else %>

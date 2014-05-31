@@ -27,9 +27,4 @@ report:
 
 template:
   './generate_doc/template.html.erb'
-#
-# yml[:report][:document_headers]
-# => false
-#
-
 

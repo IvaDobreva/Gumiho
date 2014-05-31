@@ -52,16 +52,14 @@ module GenerateDoc
     request = Net::HTTP::Post.new(uri.path)
 
     puts 'Cannot handle SSL' if ssl==true
-    print_processing_url_method(uri, 'POST')
 
     request.set_form_data({:doc=>true})
   
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(request)
     end
-   
+    print_processing_url_method(uri, 'POST')
     check_if_json(response.body)
-
   end
 
   #PUT request
@@ -77,7 +75,6 @@ module GenerateDoc
     response = http.request(request)
     
     check_if_json(response.body)
-
   end
   
   #DELETE request
@@ -91,7 +88,6 @@ module GenerateDoc
     response = http.delete(path)
     
     check_if_json(response.body)
-    
   end
 
   #Example filter for routes containing given substring used in generate_doc

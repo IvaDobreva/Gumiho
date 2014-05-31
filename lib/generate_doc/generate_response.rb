@@ -1,17 +1,15 @@
-require 'nokogiri'
+
 require 'erb'
 require 'json'
 
 module GenerateDoc
 
   def generate_response(response, template_file)
-
     template = File.open(template_file, 'r').read
     erb = ERB.new(template)
     File.open(File.join(File.dirname(__FILE__), '../', "report.html"), 'w+') { 
       |file| file.write(erb.result(binding)) 
     }
-
   end
 
 ###Methods used in the template file
@@ -38,6 +36,7 @@ module GenerateDoc
     result = Array.new
     data = parse_response(response, template_param)
 
+    #Checks for wrong or empty array
     if data.class == Array and data.empty? == false
       result.push(data)
     end

@@ -61,7 +61,7 @@ module GenerateDoc
         short '-t'
         long '--template'
         desc 'Add report template file'
-        default "./generate_doc/template.html.erb"
+        default './generate_doc/template.html.erb'
       end 
 
     end
