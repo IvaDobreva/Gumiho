@@ -1,9 +1,13 @@
 require 'choice'
 
 module GenerateDoc
-
+ 
   def get_cl_params
-    
+ 
+    spec = Gem::Specification.find_by_name("gumiho")
+    gem_root = spec.gem_dir
+    template = gem_root + "/lib/generate_doc/template.html.erb"
+   
     Choice.options do 
       header ''
       header 'Specific options:'
@@ -61,7 +65,7 @@ module GenerateDoc
         short '-t'
         long '--template'
         desc 'Add report template file'
-        default '/home/iva/GEM/lib/generate_doc/template.html.erb'
+        default template
       end 
 
     end

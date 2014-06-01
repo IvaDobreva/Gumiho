@@ -86,5 +86,4 @@ module GenerateDoc
       generate_response(response, template_file)
   
     end
- # end
 end
