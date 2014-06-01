@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'generate_doc/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "generate_doc"
+  spec.name          = "gumiho"
   spec.version       = '0.0.0'
   spec.authors       = ["IvaDobreva"]
   spec.email         = ["iva95dobreva@gmail.com"]
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.executables   = 'export_template'
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
