@@ -1,7 +1,6 @@
 $:.unshift File.dirname(__FILE__)
 require 'generate_doc/route_methods'
 require 'generate_doc/path_config'
-require 'generate_doc/command_line_params'
 require 'generate_doc/generate_response.rb'
 require 'yaml'
  
@@ -9,9 +8,9 @@ module GenerateDoc
   
   extend self
 
-    def generate_documentation
+    def generate_documentation(params, export_dir)
       #Checks for command line parameters and load them
-      params = get_cl_params
+      #params = get_cl_params
       
       #Check for config file
       if params[:config]
@@ -83,7 +82,7 @@ module GenerateDoc
 
       end
       
-      generate_response(response, template_file)
+      generate_response(response, template_file, export_dir)
   
     end
 end

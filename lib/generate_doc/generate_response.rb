@@ -4,10 +4,10 @@ require 'json'
 
 module GenerateDoc
 
-  def generate_response(response, template_file)
+  def generate_response(response, template_file, export_dir)
     template = File.open(template_file, 'r').read
     erb = ERB.new(template)
-    File.open(File.join(File.dirname(__FILE__), '../', "report.html"), 'w+') { 
+    File.open(File.join(File.dirname(export_dir), File.basename(export_dir)), 'w+') { 
       |file| file.write(erb.result(binding)) 
     }
   end

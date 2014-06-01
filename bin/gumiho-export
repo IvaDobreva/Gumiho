@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'generate_doc'
+require_relative '../lib/generate_doc/command_line_params'
 
-document = GenerateDoc::generate_documentation
+module GenerateDoc
 
+  command_line = get_cl_params
+  document = GenerateDoc::generate_documentation(command_line, ARGV[0])
+
+end
