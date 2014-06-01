@@ -4,5 +4,3 @@ require 'generate_doc'
 
 document = GenerateDoc::generate_documentation
 
-puts 'HIIIII'
-

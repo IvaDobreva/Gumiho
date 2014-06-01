@@ -61,7 +61,7 @@ module GenerateDoc
         short '-t'
         long '--template'
         desc 'Add report template file'
-        default './generate_doc/template.html.erb'
+        default '/home/iva/GEM/lib/generate_doc/template.html.erb'
       end 
 
     end
