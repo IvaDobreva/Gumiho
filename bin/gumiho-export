@@ -6,6 +6,9 @@ require_relative '../lib/generate_doc/command_line_params'
 module GenerateDoc
 
   command_line = get_cl_params
-  document = GenerateDoc::generate_documentation(command_line, ARGV[0])
-
+  if ARGV[0] 
+    document = GenerateDoc::generate_documentation(command_line, ARGV[0])
+  else 
+    abort("Enter export directory")
+  end
 end
