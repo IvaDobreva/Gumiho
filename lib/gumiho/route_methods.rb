@@ -14,7 +14,7 @@ module JSON
 end
 
 
-module GenerateDoc 
+module Gumiho
   
   def print_processing_url_method(url, method)
     puts "Processing URL: #{url} via method #{method}"

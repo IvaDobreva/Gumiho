@@ -1,6 +1,6 @@
 require 'choice'
 
-module GenerateDoc
+module Gumiho
  
   def get_cl_params
  

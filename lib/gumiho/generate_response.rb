@@ -2,7 +2,7 @@ require 'awesome_print'
 require 'erb'
 require 'json'
 
-module GenerateDoc
+module Gumiho
 
   def generate_response(response, template_file, export_dir)
     template = File.open(template_file, 'r').read

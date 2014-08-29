@@ -1,5 +1,5 @@
 
-module GenerateDoc
+module Gumiho
 
   class PathConfig
   

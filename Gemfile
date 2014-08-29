@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in generate_doc.gemspec
+# Specify your gem's dependencies in gumiho.gemspec
 gemspec
 gem 'awesome_print'
