@@ -1,7 +1,7 @@
 $:.unshift File.dirname(__FILE__)
-require 'generate_doc/route_methods'
-require 'generate_doc/path_config'
-require 'generate_doc/generate_response.rb'
+require 'gumiho/route_methods'
+require 'gumiho/path_config'
+require 'gumiho/generate_response.rb'
 require 'yaml'
  
 module GenerateDoc

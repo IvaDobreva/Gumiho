@@ -4,7 +4,9 @@
 
 ##Table of contents
 - [Installation] (#instalattion)
-
+- [Usage](#usage)
+	-[Settings](#settings)	
+		
 ## Installation
 
  $ gem install gumiho
@@ -13,4 +15,5 @@
 
  After installing gumiho you need to have running API.
 
+##Settings
 
