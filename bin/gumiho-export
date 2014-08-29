@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'generate_doc'
-require_relative '../lib/generate_doc/command_line_params'
+require_relative '../lib/gumiho/command_line_params'
 
 module GenerateDoc
 
