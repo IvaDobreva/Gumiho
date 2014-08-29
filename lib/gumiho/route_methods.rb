@@ -1,5 +1,4 @@
 require 'net/http'
-require 'openssl'
 require 'json'
 require 'awesome_print'
 
@@ -28,13 +27,12 @@ module GenerateDoc
   end
 
   #Without doc true
-  def routes_get(path, ssl)
+  def routes_get(path)
     uri = URI(path)
 
    # uri.query = URI.encode_www_form()
     http = Net::HTTP.new(uri.host, uri.port)  
 
-    puts 'Cannot handle SSL' if ssl==true
     print_processing_url_method(uri, 'GET')
 
     response = http.get(uri)
@@ -44,13 +42,12 @@ module GenerateDoc
   end
 
   # GET request
-  def get_method(path, ssl)
+  def get_method(path)
     uri = URI(path)
 
     uri.query = URI.encode_www_form({ :doc => true })
     http = Net::HTTP.new(uri.host, uri.port)  
 
-    puts 'Cannot handle SSL' if ssl==true
     print_processing_url_method(uri, 'GET')
 
     response = http.get(uri)
@@ -61,13 +58,11 @@ module GenerateDoc
   end
 
   #POST request
-  def post_method(path, ssl)
+  def post_method(path)
     
     uri = URI(path)
 
     request = Net::HTTP::Post.new(uri.path)
-
-    puts 'Cannot handle SSL' if ssl==true
 
     request.set_form_data({:doc=>true})
   
@@ -79,11 +74,10 @@ module GenerateDoc
   end
 
   #PUT request
-  def put_method(path, ssl)
+  def put_method(path)
     uri = URI(path)
     http = Net::HTTP.new(uri.host, uri.port)
 
-    puts 'Cannot handle SSL' if ssl==true
     print_processing_url_method(uri, 'PUT')
 
     request = Net::HTTP::Put.new(path)
@@ -94,11 +88,10 @@ module GenerateDoc
   end
   
   #DELETE request
-  def delete_method(path, ssl)
+  def delete_method(path)
     uri = URI(path)
     http = Net::HTTP.new(uri.host, uri.port)
 
-    p 'Cannot handle SSL' if ssl==true
     print_processing_url_method(uri, 'DELETE')
 
     response = http.delete(path)

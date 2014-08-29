@@ -33,7 +33,7 @@ module GenerateDoc
         
         #Creates new PathConfig object with following params
         path_conf = PathConfig.new(params[:protocol], params[:hostname],
-                                   params[:port], params[:route], ssl)
+                                   params[:port], params[:route])
 
         template_file = params[:template]
       end
