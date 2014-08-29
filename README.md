@@ -12,9 +12,9 @@
 	- [Your API] (#your-api)
 	
 ## Installation
-
+```
 $ gem install gumiho
-
+```
 ## Usage
 
 After installing gumiho you need to have running API and set up gumiho.
