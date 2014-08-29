@@ -19,12 +19,13 @@ After installing gumiho you need to have running API and set up gumiho.
 ##Settings
 
 Gumiho has default setting as follows:
+
 	- config - Do the set up with single YAML file 
 		long: --config [some/path]
 		short: -c	[some/path]
 		default: nil
 
-	-	methods - Choose which route methods you want
+	-methods - Choose which route methods you want
 		long: --methods 
 		short: -m	
 		default: [GET, POST, PUT, DELTE]
