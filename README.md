@@ -62,19 +62,19 @@ Gumiho has default setting as follows:
 
 ## Example for YAML set up
 
-  1##protocol 
-  2 generate_strategy: 'http'
-  3 
-  4 ##methods
-  5 methods: [ 'GET', 'POST', 'DELETE', 'PUT' ]
-  6 
-  7 ##domain settings
-  8 http:
-  9   hostname: '0.0.0.0'
- 10   port: '4000'
- 11   path: '/v1/routes'
- 12 
- 13 ##template file
- 14 template:
- 15   '/home/iva/GEM/lib/gumiho/template.html.erb'
+	  1##protocol 
+	  2 generate_strategy: 'http'
+	  3 
+	  4 ##methods
+	  5 methods: [ 'GET', 'POST', 'DELETE', 'PUT' ]
+	  6 
+	  7 ##domain settings
+	  8 http:
+	  9   hostname: '0.0.0.0'
+	 10   port: '4000'
+	 11   path: '/v1/routes'
+	 12 
+	 13 ##template file
+	 14 template:
+	 15   '/home/iva/GEM/lib/gumiho/template.html.erb'
 
