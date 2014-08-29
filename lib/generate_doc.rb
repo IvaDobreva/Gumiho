@@ -38,7 +38,7 @@ module GenerateDoc
         template_file = params[:template]
       end
 
-      routes_hash = routes_get(path_conf.build_path, path_conf.ssl)
+      routes_hash = routes_get(path_conf.build_path)
       response = []
       
       routes_hash.each do |route|
@@ -51,22 +51,22 @@ module GenerateDoc
             when 'GET' 
               response << { :method => 'GET', 
                             :url => path, 
-                            :response => get_method(path, path_conf.ssl) 
+                            :response => get_method(path) 
                           } if route['method'].downcase == 'get'
             when 'POST'
               response << { :method => 'POST', 
                             :url => path, 
-                            :response => post_method(path, path_conf.ssl) 
+                            :response => post_method(path) 
                           } if route['method'].downcase == 'post'
             when 'PUT' 
               response << { :method => 'PUT', 
                             :url => path, 
-                            :response => put_method(path, path_conf.ssl) 
+                            :response => put_method(path) 
                           } if route['method'].downcase == 'put'
             when 'DELETE'
               response << { :method => 'DELETE', 
                             :url => path, 
-                            :response => delete_method(path, path_conf.ssl) 
+                            :response => delete_method(path) 
                           } if route['method'].downcase == 'delete'
             end
           end
