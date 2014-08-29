@@ -10,7 +10,6 @@ module GenerateDoc
 
     def generate_documentation(params, export_dir)
       #Checks for command line parameters and load them
-      #params = get_cl_params
       
       #Check for config file
       if params[:config]
@@ -22,8 +21,7 @@ module GenerateDoc
           path_conf = PathConfig.new(yaml['generate_strategy'], 
                                     yaml['http']['hostname'], 
                                     yaml['http']['port'],
-                                    yaml['http']['path'],
-                                    yaml['http']['ssl'])
+                                    yaml['http']['path'])
           template_file = yaml['template']
         else
 
@@ -31,13 +29,7 @@ module GenerateDoc
 
         end
 
-      else 
-        
-        #Checks SSL param from the command line
-        ssl = false
-        if params[:ssl]=='true'
-          ssl = true
-        end    
+      else  
         
         #Creates new PathConfig object with following params
         path_conf = PathConfig.new(params[:protocol], params[:hostname],
@@ -46,7 +38,7 @@ module GenerateDoc
         template_file = params[:template]
       end
 
-      routes_hash = get_method(path_conf.build_path, path_conf.ssl)
+      routes_hash = routes_get(path_conf.build_path, path_conf.ssl)
       response = []
       
       routes_hash.each do |route|

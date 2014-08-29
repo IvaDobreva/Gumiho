@@ -27,6 +27,22 @@ module GenerateDoc
     end
   end
 
+  #Without doc true
+  def routes_get(path, ssl)
+    uri = URI(path)
+
+   # uri.query = URI.encode_www_form()
+    http = Net::HTTP.new(uri.host, uri.port)  
+
+    puts 'Cannot handle SSL' if ssl==true
+    print_processing_url_method(uri, 'GET')
+
+    response = http.get(uri)
+  
+    #Checks if JSON response is right
+    check_if_json(response.body)
+  end
+
   # GET request
   def get_method(path, ssl)
     uri = URI(path)

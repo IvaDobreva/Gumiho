@@ -1,4 +1,4 @@
-
+require 'awesome_print'
 require 'erb'
 require 'json'
 
@@ -20,19 +20,16 @@ module GenerateDoc
       result = result[param] if result.class == Hash
     end
 
-    return result
+    result
   end
 
 ######CHECK HTTTP REQUEST STATUS !!!!!
-  def check_status(response)
-    template_params = 'metadata.status'
-    status = parse_response(response, template_params)
-    return status
+  def check_status(response, template_param)
+    status = parse_response(response, template_param)
   end
 ######
 
   def map_array(response, template_param)
-    
     result = Array.new
     data = parse_response(response, template_param)
 
@@ -42,6 +39,7 @@ module GenerateDoc
     end
     
     result.each do |param|
+     # ap param
       param.each do |one_param|
         yield one_param
       end
@@ -51,7 +49,6 @@ module GenerateDoc
 
   def map_string(response, template_param)
     data = parse_response(response, template_param)
-    return data   
   end
 
 end

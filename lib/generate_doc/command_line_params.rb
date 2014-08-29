@@ -6,7 +6,7 @@ module GenerateDoc
  
     spec = Gem::Specification.find_by_name("gumiho")
     gem_root = spec.gem_dir
-    template = gem_root + "/lib/generate_doc/template.html.erb"
+    template = gem_root + "/lib/generate_doc/template/template.html.erb"
    
     Choice.options do 
       header ''
@@ -54,13 +54,6 @@ module GenerateDoc
         default '/v1/routes'
       end  
 
-      option :ssl do
-        short '-s'
-        long '--ssl'
-        desc 'enable/disable ssl use'
-        default "false"
-      end
-
       option :template do
         short '-t'
         long '--template'
@@ -68,6 +61,12 @@ module GenerateDoc
         default template
       end 
 
+      option :export do
+        short '-e'
+        long '--export'
+        desc 'Export path'
+        default './report.html'
+      end
     end
         
     Choice.choices
