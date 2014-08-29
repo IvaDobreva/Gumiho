@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'gumiho'
+require 'generate_doc'
 require_relative '../lib/gumiho/command_line_params'
 
 module Gumiho
