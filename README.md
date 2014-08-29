@@ -79,7 +79,7 @@ Gumiho has default setting as follows:
 	 12 
 	 13 ##template file
 	 14 template:
-	 15   '/home/iva/GEM/lib/gumiho/template.html.erb'
+	 15   '/some/dir/where/thetemplateis/template.html.erb'
 ```
 ##Generate Documentation
 To generate your API documentation you need to type `gumiho-export` with your desired options.
