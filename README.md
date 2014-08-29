@@ -1,29 +1,12 @@
-# GenerateDoc
+# Gumiho
 
-TODO: Write a gem description
+ Easily create RESTful API documentation
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'generate_doc'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install generate_doc
+ $ gem install gumiho
 
 ## Usage
 
-TODO: Write usage instructions here
+ It'll be added soon
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
