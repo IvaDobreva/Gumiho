@@ -1,20 +1,16 @@
-# http | list
+##protocol 
 generate_strategy: 'http'
 
+##methods
 methods: [ 'GET', 'POST', 'DELETE', 'PUT' ]
 
+##domain settings
 http:
   hostname: '0.0.0.0'
   port: '4000'
   path: '/v1/routes'
 
-#
-# http://0.0.0.0:3000/v1
-
-report:
-  document_headers: false
-  document_status: true
-
+##template file
 template:
-  '/home/iva/GEM/lib/generate_doc/template.html.erb'
+  '/home/iva/GEM/lib/gumiho/template.html.erb'
 

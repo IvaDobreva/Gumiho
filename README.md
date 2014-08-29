@@ -7,7 +7,9 @@
 - [Usage](#usage)
 	- [Settings](#settings)	
 	- [Example for YAML set up] (#example-for-yaml-set-up)
-		
+	- [Generate documentation] (#generate-documentation)	
+- [The tricky part](#the-tricky-part)
+	
 ## Installation
 
 $ gem install gumiho
@@ -78,3 +80,9 @@ Gumiho has default setting as follows:
 	 14 template:
 	 15   '/home/iva/GEM/lib/gumiho/template.html.erb'
 
+##Generate Documentation
+To generate your API documentation you need to type 'gumiho-export' with your desired options.
+After that you need to wait for the gem to finish it's work. 
+The final result you can see in your export dir, with the default template it will look like this
+
+##The tricky part
