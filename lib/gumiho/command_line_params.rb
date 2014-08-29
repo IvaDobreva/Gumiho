@@ -6,7 +6,7 @@ module GenerateDoc
  
     spec = Gem::Specification.find_by_name("gumiho")
     gem_root = spec.gem_dir
-    template = gem_root + "/lib/generate_doc/template/template.html.erb"
+    template = gem_root + "/lib/gumiho/template/template.html.erb"
    
     Choice.options do 
       header ''
