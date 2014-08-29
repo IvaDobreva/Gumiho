@@ -83,6 +83,7 @@ Gumiho has default setting as follows:
 ##Generate Documentation
 To generate your API documentation you need to type 'gumiho-export' with your desired options.
 After that you need to wait for the gem to finish it's work. 
-The final result you can see in your export dir, with the default template it will look like this
+The final result you can see in your export dir, with the default template it will look like this:
+![Alt text](https://github.com/IvaDobreva/Gumiho/blob/master/demo.png "Demo page")
 
 ##The tricky part
