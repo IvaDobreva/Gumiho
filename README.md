@@ -9,6 +9,7 @@
 	- [Example for YAML set up] (#example-for-yaml-set-up)
 	- [Generate documentation] (#generate-documentation)	
 - [The tricky part](#the-tricky-part)
+	- [Your API] (#your-api)
 	
 ## Installation
 
@@ -21,7 +22,7 @@ After installing gumiho you need to have running API and set up gumiho.
 ##Settings
 
 Gumiho has default setting as follows:
-
+```
 	- config - Do the set up with single YAML file 
 		long: --config [some/path]
 		short: -c	[some/path]
@@ -61,9 +62,9 @@ Gumiho has default setting as follows:
 		long: --export
 		short: - e
 		default: 'Your/current/dir/report.html' 
-
+```
 ## Example for YAML set up
-
+```
 	  1##protocol 
 	  2 generate_strategy: 'http'
 	  3 
@@ -79,11 +80,12 @@ Gumiho has default setting as follows:
 	 13 ##template file
 	 14 template:
 	 15   '/home/iva/GEM/lib/gumiho/template.html.erb'
-
+```
 ##Generate Documentation
-To generate your API documentation you need to type 'gumiho-export' with your desired options.
+To generate your API documentation you need to type `gumiho-export` with your desired options.
 After that you need to wait for the gem to finish it's work. 
 The final result you can see in your export dir, with the default template it will look like this:
 ![Alt text](https://github.com/IvaDobreva/Gumiho/blob/master/demo.png "Demo page")
 
 ##The tricky part
+##Your API
