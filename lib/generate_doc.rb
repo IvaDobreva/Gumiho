@@ -4,7 +4,7 @@ require 'gumiho/path_config'
 require 'gumiho/generate_response.rb'
 require 'yaml'
  
-module GenerateDoc
+module Gumiho
   
   extend self
 

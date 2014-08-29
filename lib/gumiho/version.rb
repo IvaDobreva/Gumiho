@@ -1,3 +1,3 @@
-module GenerateDoc
-  VERSION = "0.0.1"
+module Gumiho
+  VERSION = "0.0.2"
 end

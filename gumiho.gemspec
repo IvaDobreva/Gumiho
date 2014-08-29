@@ -5,7 +5,7 @@ require 'gumiho/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "gumiho"
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ["IvaDobreva"]
   spec.email         = ["iva95dobreva@gmail.com"]
   spec.description   = %q{Ruby gem for creating online RESTful API documentation with possibility to test different HTTP requests}
