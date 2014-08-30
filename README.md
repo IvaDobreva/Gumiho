@@ -10,6 +10,7 @@
 	- [Generate documentation] (#generate-documentation)	
 - [The tricky part](#the-tricky-part)
 	- [Your API] (#your-api)
+- [Templates](#templates)
 	
 ## Installation
 ```
@@ -119,21 +120,54 @@ Here is example how it looks like:
 ```
 
 * Then you need to get information about every single route. This will be done with the help of the `doc` parameter.
-This is boolean param and when its value is `true` your API must return information about the route.
+This is boolean param and when its value is `true` your API must return JSON information about the route.
 Here is how the response of your API must look like:
+
+example route: `http://0.0.0.0:4000/v1/route1/:id?doc=true`
+
+example API JSON response when doc=true:
 ```
  {
         metadata: {
-          method: route.route_method,
+          method: route_method,
           status: 'ok',
-          params: params
+          params: route_params
         },
         data: {
-          description: route.route_description,
+          description: route_description,
           params: route.route_params.map do |key, info|
             info.merge(:name => key)
           end
         },
         errors: []
-   }
+}
+```
+##Templates
+If you want to create your own template, you can use some methods which Gumiho gives you.
+* `check_status` 
+	Is method that verifies if your request is successful
+  Keep in mind that you can change metadata.status if your status is somewhere else.
+`check_status(your_response, 'metadata.status')`
+
+* `map_string`
+Example: `map_string(response[:data], 'data.description')`
+         `map_string(param_data,'name')` 
+
+This method will help you to get the information for your parameters like name, description, etc.
+
+* `map_array`
+Is the same as map string but works with arrays. This method will help you to parse array of parameters
+
+* Example of using `map_array` and `map_string`
+
+```
+<% map_array(res[:response], 'data.params') do |param_data| %>
+   <tr>
+     <td><%= name = map_string(param_data,'name') %></td>
+     <td><input type="text" name=<%= name %> ></td>
+     <td><%= map_string(param_data,'required') %></td>
+     <td><%= map_string(param_data,'type') %></td>
+     <td><%= map_string(param_data,'desc') %></td>
+    </tr>
+<% end %>
 ```
