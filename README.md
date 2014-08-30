@@ -28,7 +28,7 @@ Gumiho has default setting as follows:
 		short: -c	[some/path]
 		default: nil
 
-	-methods - Choose which route methods you want
+	- methods - Choose which route methods you want
 		long: --methods 
 		short: -m	
 		default: [GET, POST, PUT, DELTE]
@@ -88,4 +88,32 @@ The final result you can see in your export dir, with the default template it wi
 ![Alt text](https://github.com/IvaDobreva/Gumiho/blob/master/demo.png "Demo page")
 
 ##The tricky part
-##Your API
+###Your API
+To make Gumiho work properly, you need to do some changes in your API.
+First, Gumiho needs information about all the routes you're trying to document.
+So you'll need a Get request wich returns hash containing all routes in your API.
+Here is example how it looks like:
+```
+[
+    {
+        "method": "GET",
+        "path": "/v1/routes"
+    },
+    {
+        "method": "GET",
+        "path": "/v1/route1/:id"
+    },
+    {
+        "method": "POST",
+        "path": "/v1/route1"
+    },
+    {
+        "method": "PUT",
+        "path": "/v1/route1/:id"
+    },
+    {
+        "method": "DELETE",
+        "path": "/v1/route1/:id"
+    }
+]
+```
