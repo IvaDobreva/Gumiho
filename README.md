@@ -90,8 +90,8 @@ The final result you can see in your export dir, with the default template it wi
 ##The tricky part
 ###Your API
 To make Gumiho work properly, you need to do some changes in your API.
-First, Gumiho needs information about all the routes you're trying to document.
-So you'll need a Get request wich returns hash containing all routes in your API.
+* Gumiho needs information about all the routes you're trying to document.
+So you'll need a Get request wich returns hash containing all routes and information about them.
 Here is example how it looks like:
 ```
 [
@@ -116,4 +116,24 @@ Here is example how it looks like:
         "path": "/v1/route1/:id"
     }
 ]
+```
+
+* Then you need to get information about every single route. This will be done with the help of the `doc` parameter.
+This is boolean param and when its value is `true` your API must return information about the route.
+Here is how the response of your API must look like:
+```
+ {
+        metadata: {
+          method: route.route_method,
+          status: 'ok',
+          params: params
+        },
+        data: {
+          description: route.route_description,
+          params: route.route_params.map do |key, info|
+            info.merge(:name => key)
+          end
+        },
+        errors: []
+   }
 ```
