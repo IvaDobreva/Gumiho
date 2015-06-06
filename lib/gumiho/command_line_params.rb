@@ -18,6 +18,13 @@ module Gumiho
         desc 'Add config file'
         default nil
       end
+	
+      option :settings do
+	short '-s'
+	long '--settings'
+	desc 'Show current settings'
+	default '0.0.0.0:4000/v1/routes'
+      end
 
       option :methods do
         short '-m'
