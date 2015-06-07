@@ -23,7 +23,7 @@ module Gumiho
 	short '-s'
 	long '--settings'
 	desc 'Show current settings'
-	default '0.0.0.0:4000/v1/routes'
+	default nil
       end
 
       option :methods do
@@ -51,14 +51,14 @@ module Gumiho
         short '-p'
         long '--port'
         desc 'Change current port'
-        default '4000'
+        default '4567'
       end      
 
       option :route do
         short '-r'
         long '--route'
         desc 'Change current route'
-        default '/v1/routes'
+        default '/routes'
       end  
 
       option :template do

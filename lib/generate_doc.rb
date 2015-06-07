@@ -23,19 +23,25 @@ module Gumiho
                                     yaml['http']['port'],
                                     yaml['http']['path'])
           template_file = yaml['template']
-        else
+
+	else
 
           abort('Wrong file')
 
         end
 
       else  
-        
         #Creates new PathConfig object with following params
         path_conf = PathConfig.new(params[:protocol], params[:hostname],
                                    params[:port], params[:route])
 
         template_file = params[:template]
+
+	if params[:settings]
+		puts "Current path is: #{path_conf.build_path}"
+		puts "Template is: #{template_file}"
+		exit
+	end
       end
 
       routes_hash = routes_get(path_conf.build_path)
